@@ -24,7 +24,7 @@ $ java -jar *jar
 
 ```
 
-Launch the project at http://localhost:<port>/
+Launch the project at http://localhost:port/
 
 # Feature Highlights
 
