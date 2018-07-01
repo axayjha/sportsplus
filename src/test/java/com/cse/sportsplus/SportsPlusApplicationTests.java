@@ -1,4 +1,4 @@
-package com.sportsplus.SportsPlus;
+package com.cse.sportsplus;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

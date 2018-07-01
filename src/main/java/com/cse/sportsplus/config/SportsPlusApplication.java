@@ -1,4 +1,4 @@
-package com.sportsplus.SportsPlus.config;
+package com.cse.sportsplus.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
