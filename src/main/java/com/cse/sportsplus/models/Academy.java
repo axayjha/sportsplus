@@ -12,7 +12,7 @@ public class Academy implements Serializable {
 	    @GeneratedValue
 	    @Column(name="Academy_id")
 		private Long id;
-	 @Column(name="Name")
+	 	@Column(name="Name")
 		private String name;
 		@Column(name="Academy_Created_Date")
 		private String Academy_Created_Date;
