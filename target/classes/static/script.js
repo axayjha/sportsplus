@@ -123,6 +123,7 @@ app.controller("scheduleCtrl", function($scope, $http) {
 		}else{
 			$scope.message = "Fields were left empty. Please fill in the requires Details";
 		}
+		
 	};
 	
 
