@@ -12,8 +12,8 @@ public class Academy implements Serializable {
 	    @GeneratedValue
 	    @Column(name="Academy_id")
 		private Long id;
-	 @Column(name="Academy_Name")
-		private String Academy_Name;
+	 @Column(name="Name")
+		private String name;
 		@Column(name="Academy_Created_Date")
 		private String Academy_Created_Date;
 		@Column(name="Academy_Updated_Date")
@@ -29,12 +29,14 @@ public class Academy implements Serializable {
 			this.id = id;
 		}
 
-		public String getAcademy_Name() {
-			return Academy_Name;
+		
+
+		public String getName() {
+			return name;
 		}
 
-		public void setAcademy_Name(String academy_Name) {
-			Academy_Name = academy_Name;
+		public void setName(String name) {
+			this.name = name;
 		}
 
 		public String getAcademy_Created_Date() {

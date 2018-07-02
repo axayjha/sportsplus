@@ -39,19 +39,19 @@ public class AcademyController {
 		return list_of_academies;
 		
 	}
-	/*@PutMapping("/update")
+	@PutMapping("/update")
 	public List<Academy> updateAcademy(@RequestBody Academy academy) {
-		String n=academy.getAcademy_Name();
-		 Academy a=academyRepository.findByAcademy_Name( n);
+		String n=academy.getName();
+		 Academy a=academyRepository.findByName( n);
 		a.setAcademy_Created_Date(academy.getAcademy_Created_Date());
-		a.setAcademy_Name(academy.getAcademy_Name());
+		a.setName(academy.getName());
 		a.setAcademy_Updated_Date(academy.getAcademy_Created_Date());
 		a.setId(academy.getId());
 		List <Academy> list_of_academies = academyRepository.findAll();
 		return list_of_academies;
 		
 		
-	}*/
+	}
 	
 	
 	
