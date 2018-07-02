@@ -60,9 +60,13 @@ public class Athelete implements Serializable{
     //private ArrayList<Integer> groupId;
     
 	private long coachId;
+	@Column(name="PlayerLevel")
     private String level;
+	@Column(name="ResidentStatus")
     private String residentStatus;
-    private ArrayList<String> athleteStatus;
+    @Column(name="AthleteStatus")
+	private String athleteStatus;
+    @Column(name="BloodGroup")
     private String bloodGroup;
 
     
@@ -71,7 +75,7 @@ public class Athelete implements Serializable{
 			@NotNull char gender, @NotNull long contactNo, String address, @NotNull String city, @NotNull long pincode,
 			String parentFullName, String parentAddress, @NotNull long parentContact, @NotNull String primarySport,
 			String trainingBase, String college, long coachId, String level, String residentStatus,
-			ArrayList<String> athleteStatus, String bloodGroup) {
+			String athleteStatus, String bloodGroup) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -235,11 +239,11 @@ public class Athelete implements Serializable{
         this.residentStatus = residentStatus;
     }
 
-    public ArrayList<String> getAthleteStatus() {
+    public String getAthleteStatus() {
         return athleteStatus;
     }
 
-    public void setAthleteStatus(ArrayList<String> athleteStatus) {
+    public void setAthleteStatus(String athleteStatus) {
         this.athleteStatus = athleteStatus;
     }
 
