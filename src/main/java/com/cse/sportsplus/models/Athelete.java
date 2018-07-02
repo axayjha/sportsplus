@@ -1,8 +1,10 @@
 package com.cse.sportsplus.models;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -101,6 +103,7 @@ public class Athelete implements Serializable{
 	}
 
 	public Athelete() {
+
     }
 
     public long getId() {
@@ -207,6 +210,7 @@ public class Athelete implements Serializable{
         this.college = college;
     }
 
+
 //    public ArrayList<Integer> getGroupId() {
 //        return groupId;
 //    }
@@ -239,11 +243,13 @@ public class Athelete implements Serializable{
         this.residentStatus = residentStatus;
     }
 
+
     public String getAthleteStatus() {
         return athleteStatus;
     }
 
     public void setAthleteStatus(String athleteStatus) {
+
         this.athleteStatus = athleteStatus;
     }
 
@@ -254,7 +260,7 @@ public class Athelete implements Serializable{
     public void setBloodGroup(String bloodGroup) {
         this.bloodGroup = bloodGroup;
     }
-    
+
     public String getCity() {
 		return city;
 	}
