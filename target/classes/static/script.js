@@ -27,7 +27,7 @@ app.controller("academyCtrl", function($scope, $http) {
 		}).success(function(data, status) {
 			console.log(data);
 			$scope.status = status;
-			$scope.restaurants = data;
+			$scope.academies = data;
 		}).error(function(data, status) {
 			$scope.status = status;
 			$scope.data = "Request failed";

@@ -7,10 +7,10 @@
   <input type="text" ng-model="academy.Academy_Name" >
   <br>
   created_date:<br>
-  <input type="text" name=" academy.Academy_Created_Date" >
+  <input type="text" ng-model=" academy.Academy_Created_Date" >
   <br>
  updated_date:<br>
-  <input type="text" name="academy.Academy_Updated_Date" >
+  <input type="text" ng-model="academy.Academy_Updated_Date" >
   <br>
 <tr>
 				<td><button ng-click="saveAcademy()">Save Academy</button></td>
@@ -22,7 +22,7 @@
 				<td><button ng-click="updateAcademy()">Update Academy</button></td>
 			</tr>
 </form> 
-
+<p>newAcademy = {{academy}}</p>
 <style>
 table {
     font-family: arial, sans-serif;
@@ -56,9 +56,11 @@ body {
   </tr>
 	<tr ng-repeat="academy in academies">
 			<td>{{academy.Academy_Name}}</td>
-			<td>{{academy.Academy_Created_Date}</td>
-	<td>{{academy.Academy_Updated_Date}</td>
+			<td>{{academy.Academy_Created_Date}}</td>
+	<td>{{academy.Academy_Updated_Date}}</td>
 			
 		</tr>
+		
   </table>
+  
 </div>
