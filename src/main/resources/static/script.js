@@ -84,7 +84,48 @@ app.controller("academyCtrl", function($scope, $http) {
 });
 
 app.controller("scheduleCtrl", function($scope, $http) {
+	//Creating validations and functions
+	
+	//Validation if the fields are empty or not
+	var addScheduleValidate = function(scheduleObject){
+		Object.keys(scheduleObject).forEach(function(key){
+			if(scheduleObject[key] == ""){
+				return false;
+			}
+			return true;
+		});
+	};
 
 	
+	//Linking to HTML
+	//Add Schedule
+	$scope.addSchedule = function(newSchedule){
+		var checkIfOkay = addScheduleValidate(newSchedule);
+		//Check if selected date is greater than current date date
+		var date = new Date();
+		if(newSchedule.date < date){
+			$scope.dateMessage = "Selected Date should be greater than current date";
+			checkIfOkay = false;
+		}
+		if(checkIfOkay){
+			$http({
+				method : 'POST',
+				url : 'http://localhost:8080/schedule/add',
+				headers: { 'Content-Type': 'application/json' },
+				data:newSchedule
+			}).success(function(data, status) {
+				console.log(data);
+				$scope.message = "Sucessfully Added. You are good to go";
+			}).error(function(data, status) {
+				$scope.status = status;
+				$scope.data = "Request failed";
+			});
+		}else{
+			$scope.message = "Fields were left empty. Please fill in the requires Details";
+		}
+	};
+	
 
-})
+
+
+});
