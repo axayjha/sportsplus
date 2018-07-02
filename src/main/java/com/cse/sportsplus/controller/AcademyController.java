@@ -39,7 +39,7 @@ public class AcademyController {
 		return list_of_academies;
 		
 	}
-	@PutMapping("/update")
+	/*@PutMapping("/update")
 	public List<Academy> updateAcademy(@RequestBody Academy academy) {
 		String n=academy.getAcademy_Name();
 		 Academy a=academyRepository.findByAcademy_Name( n);
@@ -51,7 +51,7 @@ public class AcademyController {
 		return list_of_academies;
 		
 		
-	}
+	}*/
 	
 	
 	
