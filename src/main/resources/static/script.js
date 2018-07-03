@@ -123,10 +123,28 @@ app.controller("scheduleCtrl", function($scope, $http) {
 		}else{
 			$scope.message = "Fields were left empty. Please fill in the requires Details";
 		}
-		
 	};
-	
+	//Update Schedule
+	$scope.updateSchedule = function(Schedule) {
+		$scope.addSchedule(Schedule);
+	};
 
+
+	//Delete Schedule
+	$scope.deleteSchedule = function(Schedule){
+		$http({
+			method : 'POST',
+			url : 'http://localhost:8080/schedule/delete',
+			headers: { 'Content-Type': 'application/json' },
+			data:newSchedule
+		}).success(function(data, status) {
+			console.log(data);
+			$scope.deleteMessage = "Sucessfully Deleted";
+		}).error(function(data, status) {
+			$scope.status = status;
+			$scope.deleteMessage = "Request failed";
+		});
+	};
 
 
 });
