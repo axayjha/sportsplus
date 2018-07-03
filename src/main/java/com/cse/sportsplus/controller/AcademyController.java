@@ -44,9 +44,8 @@ public class AcademyController {
 	}
 	@PostMapping("/update")
 	public List<Academy> updateAcademy(@RequestBody Academy academy) {
-Academy d ;
-		 d=academyRepository.findByName(academy.getName());
-		academyRepository.delete(d);
+		
+		//The save method for JPA repository works for insert as well as update
 		academyRepository.save(academy);
 		List <Academy> list_of_academies = academyRepository.findAll();
 		return list_of_academies;

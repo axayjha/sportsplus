@@ -34,8 +34,10 @@ public class Athelete implements Serializable{
 	@NotNull
 	@Column(name="Gender")
     private char gender;
+	//Syntax error: Column name must be defined as a continuous string
+	//Editing to Contact_No.
 	@NotNull
-	@Column(name="Contact No")
+	@Column(name="Contact_No")
     private long contactNo;
 	@Column(name="Address")
     private String address;
