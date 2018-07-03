@@ -65,9 +65,9 @@ app.controller("academyCtrl", function($scope, $http) {
 			$scope.data = "Request failed";
 		});
 	};
-	$scope.updaateAcademy = function() {
+	$scope.updateAcademy = function() {
 		$http({
-			method : 'PUT',
+			method : 'POST',
 			url : 'http://localhost:8080/academy/update',
 			headers: { 'Content-Type': 'application/json' },
 			data:$scope.academy
