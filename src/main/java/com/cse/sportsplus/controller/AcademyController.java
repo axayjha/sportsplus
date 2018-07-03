@@ -1,5 +1,6 @@
 package com.cse.sportsplus.controller;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,19 +35,19 @@ public class AcademyController {
 	}
 	@PostMapping("/delete")
 	public List<Academy> deleteAcademy(@RequestBody Academy academy) {
-		academyRepository.delete(academy); 
+		String name=academy.getName();
+		Academy d= academyRepository.findByName( name);
+		academyRepository.delete(d);
 		List <Academy> list_of_academies = academyRepository.findAll();
 		return list_of_academies;
 		
 	}
-	@PutMapping("/update")
+	@PostMapping("/update")
 	public List<Academy> updateAcademy(@RequestBody Academy academy) {
-		String n=academy.getName();
-		 Academy a=academyRepository.findByName( n);
-		a.setAcademy_Created_Date(academy.getAcademy_Created_Date());
-		a.setName(academy.getName());
-		a.setAcademy_Updated_Date(academy.getAcademy_Created_Date());
-		a.setId(academy.getId());
+Academy d ;
+		 d=academyRepository.findByName(academy.getName());
+		academyRepository.delete(d);
+		academyRepository.save(academy);
 		List <Academy> list_of_academies = academyRepository.findAll();
 		return list_of_academies;
 		
