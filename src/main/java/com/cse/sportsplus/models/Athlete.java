@@ -15,68 +15,87 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="athlete_tbl")
-public class Athelete implements Serializable{
+public class Athlete implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-    private long id;
+    private Long id;
 	@NotNull
 	@Column(name="firstName")
     private String firstName;
+	
 	@NotNull
 	@Column(name="lastName")
     private String lastName;
+	
 	@NotNull
 	@Column(name="DOB")
     private String  dob;
+	
 	@Column(name="Age")
-    private long age;
+    private Long age;
+	
 	@NotNull
 	@Column(name="Gender")
-    private char gender;
+    private String gender;
+	
 	@NotNull
-	@Column(name="Contact No")
-    private long contactNo;
+	@Column(name="ContactNo")
+    private Long contactNo;
+	
 	@Column(name="Address")
     private String address;
+	
 	@NotNull
 	@Column(name="city")
 	private String city;
+	
 	@NotNull
 	@Column(name="pincode")
-	private long pincode;
+	private Long pincode;
+	
 	@Column(name="ParentFullName")
     private String parentFullName;
+	
 	@Column(name="ParentAddress")
     private String parentAddress;
+	
 	@NotNull
 	@Column(name="ParentContact")
-    private long parentContact;
+    private Long parentContact;
+	
 	@NotNull
 	@Column(name="PrimarySport")
     private String primarySport;
+	
 	@Column(name="TrainigBase")
     private String trainingBase;
+	
 	@Column(name="College")
     private String college;
     //private ArrayList<Integer> groupId;
     
-	private long coachId;
+	@Column(name="CoachID")
+	private Long coachId;
+	
 	@Column(name="PlayerLevel")
     private String level;
+	
 	@Column(name="ResidentStatus")
     private String residentStatus;
-    @Column(name="AthleteStatus")
+    
+	@Column(name="AthleteStatus")
 	private String athleteStatus;
-    @Column(name="BloodGroup")
+    
+	@Column(name="BloodGroup")
     private String bloodGroup;
 
     
 
-    public Athelete(long id, @NotNull String firstName, @NotNull String lastName, @NotNull String dob, long age,
-			@NotNull char gender, @NotNull long contactNo, String address, @NotNull String city, @NotNull long pincode,
-			String parentFullName, String parentAddress, @NotNull long parentContact, @NotNull String primarySport,
-			String trainingBase, String college, long coachId, String level, String residentStatus,
+    public Athlete(Long id, @NotNull String firstName, @NotNull String lastName, @NotNull String dob, Long age,
+			@NotNull @NotNull String gender, @NotNull Long contactNo, String address, @NotNull String city, @NotNull Long pincode,
+			String parentFullName, String parentAddress, @NotNull Long parentContact, @NotNull String primarySport,
+			String trainingBase, String college, Long coachId, String level, String residentStatus,
 			String athleteStatus, String bloodGroup) {
 		super();
 		this.id = id;
@@ -102,15 +121,15 @@ public class Athelete implements Serializable{
 		this.bloodGroup = bloodGroup;
 	}
 
-	public Athelete() {
+	public Athlete() {
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -138,27 +157,27 @@ public class Athelete implements Serializable{
         this.dob = dob;
     }
 
-    public long getAge() {
+    public Long getAge() {
         return age;
     }
 
-    public void setAge(long age) {
+    public void setAge(Long age) {
         this.age = age;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender( String gender) {
         this.gender = gender;
     }
 
-    public long getContactNo() {
+    public Long getContactNo() {
         return contactNo;
     }
 
-    public void setContactNo(long contactNo) {
+    public void setContactNo(Long contactNo) {
         this.contactNo = contactNo;
     }
 
@@ -186,11 +205,11 @@ public class Athelete implements Serializable{
         this.parentAddress = parentAddress;
     }
 
-    public long getParentContact() {
+    public Long getParentContact() {
         return parentContact;
     }
 
-    public void setParentContact(long parentContact) {
+    public void setParentContact(Long parentContact) {
         this.parentContact = parentContact;
     }
 
@@ -219,11 +238,11 @@ public class Athelete implements Serializable{
 //        this.groupId = groupId;
 //    }
 
-    public long getCoachId() {
+    public Long getCoachId() {
         return coachId;
     }
 
-    public void setCoachId(long coachId) {
+    public void setCoachId(Long coachId) {
         this.coachId = coachId;
     }
 
@@ -269,11 +288,11 @@ public class Athelete implements Serializable{
 		this.city = city;
 	}
 
-	public long getPincode() {
+	public Long getPincode() {
 		return pincode;
 	}
 
-	public void setPincode(long pincode) {
+	public void setPincode(Long pincode) {
 		this.pincode = pincode;
 	}
 }
