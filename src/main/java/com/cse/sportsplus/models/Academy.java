@@ -12,12 +12,16 @@ public class Academy implements Serializable {
 	    @GeneratedValue
 	    @Column(name="Academy_id")
 		private Long id;
+<<<<<<< HEAD
+	 @Column(name="Name",unique=true)
+=======
 	 	@Column(name="Name")
+>>>>>>> upstream/master
 		private String name;
-		@Column(name="Academy_Created_Date")
-		private String Academy_Created_Date;
-		@Column(name="Academy_Updated_Date")
-		private String Academy_Updated_Date;
+		@Column(name="created")
+		private String created;
+		@Column(name="updated")
+		private String updated;
 		
 		Academy(){}
 
@@ -39,21 +43,23 @@ public class Academy implements Serializable {
 			this.name = name;
 		}
 
-		public String getAcademy_Created_Date() {
-			return Academy_Created_Date;
+		public String getCreated() {
+			return created;
 		}
 
-		public void setAcademy_Created_Date(String academy_Created_Date) {
-			Academy_Created_Date = academy_Created_Date;
+		public void setCreated(String created) {
+			this.created = created;
 		}
 
-		public String getAcademy_Updated_Date() {
-			return Academy_Updated_Date;
+		public String getUpdated() {
+			return updated;
 		}
 
-		public void setAcademy_Updated_Date(String academy_Updated_Date) {
-			Academy_Updated_Date = academy_Updated_Date;
+		public void setUpdated(String updated) {
+			this.updated = updated;
 		}
+
+		
 
 		
 		
