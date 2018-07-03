@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
+Built-By: arnabsen
+Build-Jdk: 10
 Implementation-Title: SportsPlus
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: akshay
 Implementation-Vendor-Id: com.cse
-Build-Jdk: 1.8.0_171
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/sportsplus
 Created-By: Maven Integration for Eclipse
