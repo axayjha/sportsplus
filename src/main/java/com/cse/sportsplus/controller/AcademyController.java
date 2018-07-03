@@ -24,7 +24,7 @@ public class AcademyController {
 	
 	@PostMapping("/add")
 	public Academy addAcademy(@RequestBody Academy academy) {
-		Academy persistedAcademy = academyRepository. save(academy); 
+		Academy persistedAcademy = academyRepository.save(academy); 
 		return persistedAcademy;
 	}
 	

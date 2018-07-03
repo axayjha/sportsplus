@@ -12,7 +12,11 @@ public class Academy implements Serializable {
 	    @GeneratedValue
 	    @Column(name="Academy_id")
 		private Long id;
+<<<<<<< HEAD
 	 @Column(name="Name",unique=true)
+=======
+	 	@Column(name="Name")
+>>>>>>> upstream/master
 		private String name;
 		@Column(name="created")
 		private String created;
