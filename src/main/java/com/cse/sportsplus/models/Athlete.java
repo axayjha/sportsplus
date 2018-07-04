@@ -17,9 +17,18 @@ import javax.validation.constraints.NotNull;
 @Table(name="athlete_tbl")
 public class Athlete implements Serializable{
 	@Id
-	@GeneratedValue
+	@GeneratedValue()
 	@Column(name="id")
     private Long id;
+	
+	public String getPrimarySport() {
+		return primarySport;
+	}
+
+	public void setPrimarySport(String primarySport) {
+		this.primarySport = primarySport;
+	}
+
 	@NotNull
 	@Column(name="firstName")
     private String firstName;

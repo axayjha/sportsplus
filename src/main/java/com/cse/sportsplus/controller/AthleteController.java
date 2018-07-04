@@ -23,7 +23,8 @@ public class AthleteController {
 	public List<Athlete> AthleteList()
 	{
 	
-		return arepo.findAll();
+		List<Athlete> a1=arepo.findAll();
+		return a1;
 	
 	}
 	
@@ -36,11 +37,10 @@ public class AthleteController {
 		return Athlete;
 	}
 	@PostMapping("/deleteAthlete")
-	public Athlete AthleteDelete(@RequestBody Athlete Athlete)
+	public Athlete AthleteDelete(@RequestBody Athlete athlete)
 	{
-		
-		
-		return Athlete;
+		arepo.deleteById(athlete.getId());
+		return athlete;
 	}
 	@PostMapping("/AthleteUpdate")
 	 public Athlete AthleteUpdate(@RequestBody Athlete Athlete)
