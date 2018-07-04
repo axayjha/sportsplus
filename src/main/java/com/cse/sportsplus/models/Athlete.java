@@ -21,14 +21,6 @@ public class Athlete implements Serializable{
 	@Column(name="id")
     private Long id;
 	
-	public String getPrimarySport() {
-		return primarySport;
-	}
-
-	public void setPrimarySport(String primarySport) {
-		this.primarySport = primarySport;
-	}
-
 	@NotNull
 	@Column(name="firstName")
     private String firstName;
@@ -304,4 +296,12 @@ public class Athlete implements Serializable{
 	public void setPincode(Long pincode) {
 		this.pincode = pincode;
 	}
+
+    public String getPrimarySport() {
+        return primarySport;
+    }
+
+    public void setPrimarySport(String primarySport) {
+        this.primarySport = primarySport;
+    }
 }
