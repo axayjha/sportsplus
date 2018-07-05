@@ -99,7 +99,8 @@ public class Schedule implements Serializable{
 	public void setAcademy_id(Long academy_id) {
 		this.academy_id = academy_id;
 	}
-	
+
+
 	
 	
 
