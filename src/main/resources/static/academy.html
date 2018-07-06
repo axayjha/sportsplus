@@ -1,0 +1,67 @@
+<div class="well">
+
+<h2> Academy Form</h2>
+
+<form >
+  name:<br>
+  <input type="text" ng-model="academy.name" >
+  <br>
+  created_date:<br>
+  <input type="text" ng-model=" academy.created" >
+  <br>
+ updated_date:<br>
+  <input type="text" ng-model="academy.updated" >
+  <br>
+<tr>
+				<td><button ng-click="saveAcademy()">Save Academy</button></td>
+			</tr>
+<tr>
+				<td><button ng-click="deleteAcademy()">Delete Academy</button></td>
+			</tr>
+<tr>
+				<td><button ng-click="updateAcademy()">Update Academy</button></td>
+			</tr>
+</form> 
+<p>newAcademy = {{academy}}</p>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+body {
+    background-color: lightblue;
+}
+
+</style>
+
+
+<h2>Academy  Table</h2>
+	<div class="clearfix"></div>
+<table class="table table-strip table-hover" data-ng-init="fetchAcademy()">
+
+  <tr>
+    <th>Name</th>
+    <th> Created Date</th>
+    <th>Updated Date</th>
+  </tr>
+	<tr ng-repeat="academy in academies">
+			<td>{{academy.name}}</td>
+			<td>{{academy.created}}</td>
+	        <td>{{academy.updated}}</td>
+			
+   </tr>
+		
+  </table>
+  
+</div>
