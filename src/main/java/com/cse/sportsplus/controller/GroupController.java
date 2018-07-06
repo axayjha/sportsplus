@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cse.sportsplus.models.CoachGroupData;
 import com.cse.sportsplus.models.Group;
-import com.cse.sportsplus.repository.CoachGroupDataRepository;
 import com.cse.sportsplus.repository.GroupRepository;
 
 @RestController
@@ -22,20 +20,10 @@ public class GroupController {
 	@Autowired 
 	private GroupRepository groupRepository;
 	
-	@Autowired
-	private CoachGroupDataRepository coachGroupRepo;
 	
 	@PostMapping("/addGroup")
 	public Group addGroup(@RequestBody Group group) {
 		Group persistedGroup = groupRepository.save(group);
-		
-		Group tempGroup = groupRepository.findByGroupName(group.getGroupName());
-		CoachGroupData coachGroup = new CoachGroupData();
-		coachGroup.setCoachId(tempGroup.getCoachId());
-		coachGroup.setGroupId(tempGroup.getGroupID());
-		coachGroupRepo.save(coachGroup);
-
-		
 		return persistedGroup;
 	}
 	
@@ -53,7 +41,6 @@ public class GroupController {
 			groupRepository.delete(deleteGroup);
 		List<Group> remainingGroup = groupRepository.findAll();
 		
-		coachGroupRepo.deleteByGroupId(deleteGroup.getGroupID());
 		return remainingGroup;
 	}
 	
