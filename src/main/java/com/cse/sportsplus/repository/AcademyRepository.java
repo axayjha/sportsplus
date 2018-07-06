@@ -10,6 +10,7 @@ import com.cse.sportsplus.models.Academy;
 
 public interface AcademyRepository extends JpaRepository<Academy, Long> {
  @Query
- Academy findByName(String name );
+ Academy findByName(String name);
+ Academy findById(long id);
  
 }

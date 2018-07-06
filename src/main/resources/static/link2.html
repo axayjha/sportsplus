@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style2.css" />
+</head>
+<body>
+	<h2>Academy  Table</h2>
+	<div class="clearfix"></div>
+<table class="table table-strip table-hover" data-ng-init="fetchAcademy()">
+
+  <tr>
+    <th>Name</th>
+    <th> Created Date</th>
+    <th>Updated Date</th>
+  </tr>
+	<tr ng-repeat="academy in academies">
+			<td>{{academy.name}}</td>
+			<td>{{academy.created}}</td>
+	        <td>{{academy.updated}}</td>
+			
+   </tr>
+		
+  </table>
+</body>
+</html>
