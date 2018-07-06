@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cse.sportsplus.models.Coach;
@@ -31,6 +32,17 @@ public class CoachController {
 	public List<Coach> coachList() {
 		List<Coach> coaches = coachRepository.findAll();
 		return coaches;
+	}
+	
+	@PostMapping("/delete")
+	public void coachDelete(@RequestParam("coach_id") Long cid) {
+		coachRepository.deleteById(cid);
+	}
+	
+	@PostMapping("/update")
+	public Coach coachUpdate(@RequestBody Coach coach) {
+		Coach coh = coachRepository.save(coach); // note that given coach_id must be present
+		return coh;
 	}
 	
 }
