@@ -13,6 +13,10 @@ app.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'schedule.html',
 		controller : 'scheduleCtrl'
 	});
+	$routeProvider.when('/group', {
+		templateUrl : 'group.html',
+		controller : 'groupCtrl'
+	});
 	$routeProvider.otherwise({
 		redirectTo : '/home'
 	});
@@ -125,8 +129,67 @@ app.controller("scheduleCtrl", function($scope, $http) {
 		}
 		
 	};
+
+});
+
+app.controller("groupCtrl", function($scope, $http) {
+	$scope.addGroup = function () {
+		$http({
+			method : 'POST',
+			url : 'http://localhost:8080/group/addGroup',
+			data : $scope.group
+		}).success(function(data, status) {
+			alert("Group added");
+		}).error(function(data, status) {
+			$scope.status = status;
+		});
+	};
 	
-
-
-
+	$scope.getAllGroups = function() {
+		$http({
+			method : 'GET',
+			url : 'http://localhost:8080/group/getGroups'
+		}).success(function(data, status) {
+			$scope.groups = data;
+			
+		}).error(function(data, status) {
+			$scope.status = status;
+		});
+	};
+	
+	$scope.deleteGroup = function() {
+		$http({
+			method : 'POST',
+			url : 'http://localhost:8080/group/deleteGroup',
+			data : $scope.group
+		}).success(function(data, status) {
+			alert("Group deleted");
+		}).error(function(data, status) {
+			$scope.status = status;
+		});
+	};
+	
+	$scope.fetchGroup = function() {
+		$http({
+			method : 'POST',
+			url : 'http://localhost:8080/group/getAGroup',
+			data : $scope.group1
+		}).success(function(data, status) {
+			$scope.groupData = data;
+		}).error(function(data, status) {
+			$scope.status = status;
+		});
+	};
+	
+	$scope.updateGroup = function() {
+		$http({
+			method : 'POST',
+			url : 'http://localhost:8080/group/updateGroup',
+			data : $scope.group1
+		}).success(function(data, status) {
+			alert("updated");
+		}).error(function(data, status) {
+			$scope.status = status;
+		});
+	};
 });
