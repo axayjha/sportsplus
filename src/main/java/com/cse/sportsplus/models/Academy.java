@@ -1,10 +1,7 @@
 package com.cse.sportsplus.models;
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 @Entity
 @Table(name="academy_table")
 public class Academy implements Serializable {
@@ -18,8 +15,8 @@ public class Academy implements Serializable {
 		private String name;
 		@Column(name="created")
 		private String created;
-		@Column(name="updated")
-		private String updated;
+		@Column(name="upStringd")
+		private String upStringd;
 		
 		Academy(){}
 
@@ -49,17 +46,12 @@ public class Academy implements Serializable {
 			this.created = created;
 		}
 
-		public String getUpdated() {
-			return updated;
+		public String getUpStringd() {
+			return upStringd;
 		}
 
-		public void setUpdated(String updated) {
-			this.updated = updated;
+		public void setUpStringd(String upStringd) {
+			this.upStringd = upStringd;
 		}
-
-		
-
-		
-		
-}	
+}
 		
