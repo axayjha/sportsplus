@@ -44,10 +44,13 @@ public class AcademyController {
 	}
 	@PostMapping("/update")
 	public List<Academy> updateAcademy(@RequestBody Academy academy) {
-Academy d ;
-		 d=academyRepository.findByName(academy.getName());
-		academyRepository.delete(d);
-		academyRepository.save(academy);
+		Academy d ;
+		long n = academy.getId();
+		d=academyRepository.findById(n);
+		d.setName(academy.getName());
+		d.setCreated(academy.getCreated());
+		d.setUpdated(academy.getUpdated());
+		academyRepository.save(d);
 		List <Academy> list_of_academies = academyRepository.findAll();
 		return list_of_academies;
 		

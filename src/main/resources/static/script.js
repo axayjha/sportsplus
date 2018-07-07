@@ -6,13 +6,29 @@ app.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'home.html'
 	});
 	$routeProvider.when('/academy', {
-		templateUrl : 'academy.html',
-		controller : 'academyCtrl'
+		templateUrl : 'link1.html'
+		
 	});
 	$routeProvider.when('/schedule', {
 		templateUrl : 'schedule.html',
 		controller : 'scheduleCtrl'
 	});
+	$routeProvider.when('/addAcademy', {
+		templateUrl : 'academy.html',
+		controller : 'academyCtrl'
+	});
+	$routeProvider.when('/viewAcademy', {
+		templateUrl : 'link2.html',
+		controller : 'academyCtrl'
+	});
+//	$routeProvider.when('/deleteAcademy', {
+//		templateUrl : 'academy.html',
+//		controller : 'academyCtrl'
+//	});
+//	$routeProvider.when('/updateAcademy', {
+//		templateUrl : 'academy.html',
+//		controller : 'academyCtrl'
+//	});
 	$routeProvider.otherwise({
 		redirectTo : '/home'
 	});
@@ -27,7 +43,7 @@ app.controller("academyCtrl", function($scope, $http) {
 		}).success(function(data, status) {
 			console.log(data);
 			$scope.status = status;
-			$scope.academies = data;
+			//$scope.academies = data;
 		}).error(function(data, status) {
 			$scope.status = status;
 			$scope.data = "Request failed";
