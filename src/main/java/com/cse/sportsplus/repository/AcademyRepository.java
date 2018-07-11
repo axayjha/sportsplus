@@ -12,4 +12,13 @@ public interface AcademyRepository extends JpaRepository<Academy, Long> {
  @Query
  Academy findByName(String name );
  
+ 
+ 
+ 
+ 
+ 
+ //Required for Schedule
+ @Query(value="select Academy_id from academy_table",nativeQuery=true)
+ public List<java.math.BigInteger> getAllAcademyID();
+ 
 }
