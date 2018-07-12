@@ -34,7 +34,7 @@ public class Schedule implements Serializable{
 	private Long updated_time;
 	
 	@Column(name = "status")
-	private Byte status;
+	private String status;
 	
 	@Column(name = "group_id")
 	private Long group_id;
@@ -76,11 +76,11 @@ public class Schedule implements Serializable{
 		this.updated_time = updated_time;
 	}
 
-	public Byte getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Byte status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -100,6 +100,21 @@ public class Schedule implements Serializable{
 		this.academy_id = academy_id;
 	}
 
+	public Schedule(Long id, Long date_time, String description, Long updated_time, String status, Long group_id,
+			Long academy_id) {
+		super();
+		this.id = id;
+		
+		this.date_time = date_time;
+		this.description = description;
+		this.updated_time = updated_time;
+		this.status = status;
+		this.group_id = group_id;
+		this.academy_id = academy_id;
+	}
+
+	
+	
 
 	
 	
