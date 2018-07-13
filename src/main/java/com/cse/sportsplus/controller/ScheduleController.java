@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cse.sportsplus.models.Schedule;
+import com.cse.sportsplus.repository.AcademyRepository;
+import com.cse.sportsplus.repository.GroupRepository;
 import com.cse.sportsplus.repository.ScheduleRepository;
 
 @RestController
@@ -19,6 +21,11 @@ public class ScheduleController {
 	@Autowired
 	private ScheduleRepository scheduleRepository;
 	
+	@Autowired
+	private AcademyRepository academyController;
+	
+	@Autowired
+	private GroupRepository groupRepository;
 	
 	@PostMapping("/add")
 	public Schedule addSchedule(@RequestBody Schedule schedule) {
@@ -34,6 +41,18 @@ public class ScheduleController {
 		return list_of_schedules;
 	}
 	
-	
+	@GetMapping("/getAcademyID")
+	public List<java.math.BigInteger> getAllAcademyID(){
+		return academyController.getAllAcademyID();
+	}
 
+	@GetMapping("/getGroupID")
+	public List<java.math.BigInteger> getAllGroupID(){
+		return groupRepository.getAllID();
+	}
+	
+	@PostMapping("/delete")
+	public void deleteSchedule(@RequestBody Schedule sh) {
+		scheduleRepository.deleteById(sh.getId());
+	}
 }
