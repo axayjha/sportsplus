@@ -1,6 +1,6 @@
 # SportsPlus
 
-This is class project demonstrating the basics of Spring MVC, IoC containers for Java objects
+This is a class project demonstrating the basics of Spring MVC, IoC containers for Java objects
 and Apache Maven for build automation. We are using Java Persistence API to manage relational data
 connections to H2 database and RESTful web services to bind front-end.
 
