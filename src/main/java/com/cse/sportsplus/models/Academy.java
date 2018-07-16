@@ -1,29 +1,39 @@
 package com.cse.sportsplus.models;
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
+import javax.persistence.*;
+
 @Entity
 @Table(name="academy_table")
 public class Academy implements Serializable {
-	 @Id
+	 	@Id
 	    @GeneratedValue
 	    @Column(name="Academy_id")
 		private Long id;
 	
-	 @Column(name="Name",unique=true)
-
+	 	@Column(name="Name",unique=true)
 		private String name;
-		@Column(name="created")
+
+	 	@Column(name="created")
 		private String created;
-		@Column(name="updated")
-		private String updated;
-		
+
+	 	@Column(name="upStringd")
+		private String upStringd;
+
+	 	@OneToMany(mappedBy = "academy")
+	 	private List<Group> groupList;
+
+
+
 		Academy(){}
 
-		public Long getId() {
+	public Academy(String name, String created, String upStringd) {
+		this.name = name;
+		this.created = created;
+		this.upStringd = upStringd;
+	}
+
+	public Long getId() {
 			return id;
 		}
 
@@ -31,7 +41,7 @@ public class Academy implements Serializable {
 			this.id = id;
 		}
 
-		
+
 
 		public String getName() {
 			return name;
@@ -49,17 +59,20 @@ public class Academy implements Serializable {
 			this.created = created;
 		}
 
-		public String getUpdated() {
-			return updated;
+		public String getUpStringd() {
+			return upStringd;
 		}
 
-		public void setUpdated(String updated) {
-			this.updated = updated;
+		public void setUpStringd(String upStringd) {
+			this.upStringd = upStringd;
 		}
 
-		
+//		public List<Group> getGroupList() {
+//			return groupList;
+//		}
 
-		
-		
-}	
+		public void setGroupList(List<Group> groupList) {
+			this.groupList = groupList;
+		}
+}
 		

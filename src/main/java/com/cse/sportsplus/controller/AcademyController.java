@@ -24,14 +24,12 @@ public class AcademyController {
 	
 	@PostMapping("/add")
 	public Academy addAcademy(@RequestBody Academy academy) {
-		Academy persistedAcademy = academyRepository.save(academy); 
-		return persistedAcademy;
+		return academyRepository.save(academy);
 	}
 	
 	@GetMapping("/getAll")
 	public List<Academy> getAll() {
-		List <Academy> list_of_academies = academyRepository.findAll();
-		return list_of_academies;
+		return academyRepository.findAll();
 	}
 	@PostMapping("/delete")
 	public List<Academy> deleteAcademy(@RequestBody Academy academy) {
