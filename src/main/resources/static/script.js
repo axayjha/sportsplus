@@ -239,8 +239,35 @@ app.controller("scheduleCtrl", function($scope, $http) {
 			alert("Updated date should not be left blank");
 			return false;
 		}
-		
+		var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
 		//Check if selected date is greater than current date date
+		if(c.yy%100!=0&&c.yy%4==0||c.yy%400==0){
+			if(c.dd > 29){
+					alert("Feburary (Leap year) cannot exceed 29 days");
+					return;
+			}
+		}else{
+			if(c.dd > monthLength[c.mm-1]){
+			alert("Schedule date is not valid: Month Day combination not valid");
+			return;
+			}
+		}
+		
+		
+		
+		if(u.yy%100!=0&&u.yy%4==0||u.yy%400==0){
+			if(u.dd > 29){
+				alert("Updated Date: Feburary (Leap year) cannot exceed 29 days");
+				return;
+			}
+		}else{
+			if(u.dd > monthLength[u.mm-1]){
+			alert("Updated Date not valid: Month Day combination not valid");
+			return;
+			}
+		}
+		
+	
 		var v = new Date(c.yy,c.mm-1,c.dd,c.hrs,c.min,0,0);
 		var date = new Date()
 		console.log(v);
