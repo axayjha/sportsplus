@@ -10,19 +10,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="tbl_coach")
+
 public class Coach implements Serializable {
 
+	
+	
+	@Column(name="group_id", columnDefinition="BIGINT(255) references group_tbl(groupid)")
+	private Long group_id;
+	
 	@Id
 	@GeneratedValue
+	@Column(name="coach_id")
 	private Long coach_id;
 	
-	@ManyToOne
-	@JoinColumn(name = "groupID")
-	private Group group_id;
 	
 	@Column(name="name")
 	private String name;
@@ -47,11 +54,11 @@ public class Coach implements Serializable {
 
 	
 
-	public Group getGroup_id() {
+	public Long getGroup_id() {
 		return group_id;
 	}
 
-	public void setGroup_id(Group group_id) {
+	public void setGroup_id(Long group_id) {
 		this.group_id = group_id;
 	}
 
@@ -76,6 +83,23 @@ public class Coach implements Serializable {
 	}
 
 	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+//	public Coach(Long group_id, String name, String qualification, String phone) {
+//		super();
+//		this.group_id = group_id;
+//		this.name = name;
+//		this.qualification = qualification;
+//		this.phone = phone;
+//	}
+
+	public Coach(Long coach_id, Long group_id, String name, String qualification, String phone) {
+		super();
+		this.coach_id = coach_id;
+		this.group_id = group_id;
+		this.name = name;
+		this.qualification = qualification;
 		this.phone = phone;
 	}
 	
