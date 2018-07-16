@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class SportsPlusApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(SportsPlusApplication.class, args);
 	}
 }
