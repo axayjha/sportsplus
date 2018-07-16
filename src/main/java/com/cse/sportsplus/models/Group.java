@@ -4,23 +4,20 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "group_tbl")
 public class Group implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
+	@Column(name="group_id")
 	private Long groupID;
+
+	@ManyToOne
+	@JoinColumn(name="academy_id")
+	private Academy academy;
 
 	@Column(name = "groupName")
 	private String groupName;
@@ -31,7 +28,7 @@ public class Group implements Serializable{
 	@Column(name = "groupStatus")
 	private String groupStatus;
 	
-	@OneToMany(mappedBy="group_id")
+	@ManyToMany(mappedBy="groups")
 	private List<Coach> coach;
 
 	
@@ -39,6 +36,11 @@ public class Group implements Serializable{
 		super();
 	}
 
+	public Group(String groupName, String groupDescription, String groupStatus) {
+		this.groupName = groupName;
+		this.groupDescription = groupDescription;
+		this.groupStatus = groupStatus;
+	}
 
 	public Long getGroupID() {
 		return groupID;
@@ -87,6 +89,14 @@ public class Group implements Serializable{
 
 	public void setCoach(List<Coach> coach) {
 		this.coach = coach;
+	}
+
+	public Academy getAcademy() {
+		return academy;
+	}
+
+	public void setAcademy(Academy academy) {
+		this.academy = academy;
 	}
 
 	
