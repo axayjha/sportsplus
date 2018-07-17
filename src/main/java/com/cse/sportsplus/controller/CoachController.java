@@ -1,7 +1,6 @@
 package com.cse.sportsplus.controller;
 
 
-import java.math.BigInteger;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cse.sportsplus.models.Coach;
 import com.cse.sportsplus.repository.CoachRepository;
-import com.cse.sportsplus.repository.GroupRepository;
 
 
 @RestController
@@ -24,13 +22,9 @@ public class CoachController {
 	@Autowired
 	private CoachRepository coachRepository;
 	
-	@Autowired
-	private GroupRepository groupRepository;
-	
 	@PostMapping("/create")
 	public Coach coachCreate(@RequestBody Coach coach) {
 		Coach coh = coachRepository.save(coach);
-		groupRepository.addGroupAndCoach(BigInteger.valueOf(coach.getGroup_id()), BigInteger.valueOf(coach.getCoach_id()));
 		return coh;
 	}
 	
