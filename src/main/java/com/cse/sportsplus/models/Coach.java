@@ -1,6 +1,7 @@
 package com.cse.sportsplus.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,7 +53,6 @@ public class Coach implements Serializable {
 		this.coach_id = coach_id;
 	}
 
-	
 
 	public Long getGroup_id() {
 		return group_id;

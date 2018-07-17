@@ -17,6 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -32,6 +34,10 @@ public class Group implements Serializable{
 	@Column(name="groupID")
 	private Long groupID;
 
+	@ManyToOne
+	@JoinColumn(name="academy_id")
+	private Academy academy;
+
 	@Column(name = "groupName")
 	private String groupName;
 	
@@ -40,14 +46,12 @@ public class Group implements Serializable{
 	
 	@Column(name = "groupStatus")
 	private String groupStatus;
+	
+	@ManyToMany(mappedBy="groups")
+	private List<Coach> coach;
 
-	@ElementCollection
-	@CollectionTable(name="group_coach",
-		foreignKey=@ForeignKey(foreignKeyDefinition="FOREIGN KEY(coach) REFERENCES tbl_coach(coach_id)"
-	))
-	private List<Long> coach;
 
-	public Group(Long groupID, String groupName, String groupDescription, String groupStatus, List<Long> coach) {
+	public Group(Long groupID, String groupName, String groupDescription, String groupStatus, List<Coach> coach) {
 		super();
 		System.out.println("Constructor called");
 		this.groupID = groupID;
@@ -55,6 +59,12 @@ public class Group implements Serializable{
 		this.groupDescription = groupDescription;
 		this.groupStatus = groupStatus;
 		this.coach = new ArrayList<>(coach);
+	}
+
+	public Group(String groupName, String groupDescription, String groupStatus) {
+		this.groupName = groupName;
+		this.groupDescription = groupDescription;
+		this.groupStatus = groupStatus;
 	}
 
 	public Long getGroupID() {
@@ -89,17 +99,25 @@ public class Group implements Serializable{
 		this.groupStatus = groupStatus;
 	}
 
-	public List<Long> getCoach() {
+	public List<Coach> getCoach() {
 		return coach;
 	}
 
-	public void setCoach(List<Long> coach) {
+	public void setCoach(List<Coach> coach) {
 		this.coach = coach;
 	}
 
 	public Group() {
 		super();
 	}
+	public Academy getAcademy() {
+		return academy;
+	}
+
+	public void setAcademy(Academy academy) {
+		this.academy = academy;
+	}
+
 	
 	
 	

@@ -1,15 +1,22 @@
 <div class="well">
 
 <h2> Academy Form</h2>
+<img src="maradona.jpg" alt="maradona" width="20%" height="200 ">
 
+<img src="sachin.jpg" alt="sachin" width="25%" height="200 ">
+
+<img src="fed.jpg" alt="federer" width="25%" height="200 ">
+
+
+<img src="bolt.jpg" alt="bolt" width="25%" height="200 ">
 <form >
-  name:<br>
+  <br>Name:<br>
   <input type="text" ng-model="academy.name" >
   <br>
-  created_date:<br>
+  Created Date:<br>
   <input type="text" ng-model=" academy.created" >
   <br>
- updated_date:<br>
+Updated Date:<br>
   <input type="text" ng-model="academy.updated" >
   <br>
 <tr>
@@ -24,6 +31,13 @@
 </form> 
 <p>newAcademy = {{academy}}</p>
 <style>
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #4CAF50;
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -41,8 +55,9 @@ tr:nth-child(even) {
 }
 body {
     background-color: lightblue;
-}
 
+}
+>
 </style>
 
 
