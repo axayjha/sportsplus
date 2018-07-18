@@ -29,7 +29,7 @@ public class Group implements Serializable{
 	private String groupStatus;
 	
 	@ManyToMany(mappedBy="groups")
-	private List<Coach> coach;
+	private Set<Coach> coach;
 
 	
 	public Group() {
@@ -82,12 +82,10 @@ public class Group implements Serializable{
 	}
 
 
-	public List<Coach> getCoach() {
-		return coach;
-	}
+	//public Set<Coach> getCoach() {return coach; }
 
 
-	public void setCoach(List<Coach> coach) {
+	public void setCoach(Set<Coach> coach) {
 		this.coach = coach;
 	}
 
