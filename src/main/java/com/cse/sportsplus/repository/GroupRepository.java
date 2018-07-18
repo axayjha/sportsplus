@@ -1,5 +1,6 @@
 package com.cse.sportsplus.repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,12 +14,14 @@ public interface GroupRepository extends JpaRepository<Group,Long>
 	
 	Group findByGroupID(Long groupId);
 	
+	@Query(value = "select academy_id from group_tbl where group_id=?",nativeQuery = true)
+	BigInteger aid(Long group_id);
+
 	
 	
 	
 	
-	
-	@Query(value= "select groupID from group_tbl", nativeQuery=true)
+	@Query(value= "select group_id from group_tbl", nativeQuery=true)
 	List<java.math.BigInteger> getAllID();
 	
 	

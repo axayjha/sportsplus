@@ -1,6 +1,6 @@
 package com.cse.sportsplus.controller;
 
-import java.util.ArrayList;
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +62,12 @@ public class GroupController {
 		List<Group> allGroups = groupRepository.findAll();
 		return allGroups;
 	}
-	
+
+	@GetMapping("/testId")
+	public BigInteger fetchAid(Long group_id){
+		return groupRepository.aid(group_id);
+	}
+
 //	@PostMapping("/addCoach")
 //	public void addCoach(@RequestBody Coach coach) {
 //		CoachGroupData groupCoach;
