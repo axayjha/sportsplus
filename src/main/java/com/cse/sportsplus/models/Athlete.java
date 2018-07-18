@@ -74,7 +74,7 @@ public class Athlete implements Serializable{
 	
 	@Column(name="College")
     private String college;
-    //private ArrayList<Integer> groupId;
+
     
 	@Column(name="CoachID")
 	private Long coachId;
@@ -230,14 +230,6 @@ public class Athlete implements Serializable{
         this.college = college;
     }
 
-
-//    public ArrayList<Integer> getGroupId() {
-//        return groupId;
-//    }
-//
-//    public void setGroupId(ArrayList<Integer> groupId) {
-//        this.groupId = groupId;
-//    }
 
     public Long getCoachId() {
         return coachId;
