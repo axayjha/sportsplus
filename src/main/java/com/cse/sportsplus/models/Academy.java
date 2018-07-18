@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="academy_table")
 public class Academy implements Serializable {
+
 	 	@Id
 	    @GeneratedValue
 	    @Column(name="Academy_id")
