@@ -5,6 +5,10 @@ app.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/home', {
 		templateUrl : 'home.html'
 	});
+	
+	$routeProvider.when('/index', {
+		templateUrl : 'index.html'
+	});
 	$routeProvider.when('/academy', {
 		templateUrl : 'academy.html',
 		controller : 'academyCtrl'
@@ -22,8 +26,11 @@ app.config([ '$routeProvider', function($routeProvider) {
 	});
 } ]);
 
+// academy controller
+
 app.controller("academyCtrl", function($scope, $http) {
 
+	// fetchAcademy -> getAll
 	$scope.fetchAcademy = function() {
 		$http({
 			method : 'GET',
@@ -38,7 +45,7 @@ app.controller("academyCtrl", function($scope, $http) {
 		});
 	};
 	
-	
+	// saveAcademy -> add
 	$scope.saveAcademy = function() {
 		$http({
 			method : 'POST',
@@ -54,6 +61,8 @@ app.controller("academyCtrl", function($scope, $http) {
 			$scope.data = "Request failed";
 		});
 	};
+	
+	// deleteAcademy -> delete
 	$scope.deleteAcademy = function() {
 		$http({
 			method : 'POST',
@@ -69,6 +78,8 @@ app.controller("academyCtrl", function($scope, $http) {
 			$scope.data = "Request failed";
 		});
 	};
+	
+	// updateAcademy -> update
 	$scope.updateAcademy = function() {
 		$http({
 			method : 'POST',
@@ -87,6 +98,7 @@ app.controller("academyCtrl", function($scope, $http) {
 
 });
 
+/* // DONT TOUCH
 app.controller("scheduleCtrl", function($scope, $http) {
 	//Creating validations and functions
 	
@@ -132,7 +144,12 @@ app.controller("scheduleCtrl", function($scope, $http) {
 
 });
 
+*/
+
+// group controller
 app.controller("groupCtrl", function($scope, $http) {
+	
+	// addGroup -> addGroup
 	$scope.addGroup = function () {
 		$http({
 			method : 'POST',
@@ -145,6 +162,7 @@ app.controller("groupCtrl", function($scope, $http) {
 		});
 	};
 	
+	// getAllGroups -> getGroups
 	$scope.getAllGroups = function() {
 		$http({
 			method : 'GET',
@@ -157,6 +175,7 @@ app.controller("groupCtrl", function($scope, $http) {
 		});
 	};
 	
+	// deleteGroup -> deleteGroup
 	$scope.deleteGroup = function() {
 		$http({
 			method : 'POST',
@@ -169,6 +188,7 @@ app.controller("groupCtrl", function($scope, $http) {
 		});
 	};
 	
+	// fetchGroup -> getAGroup
 	$scope.fetchGroup = function() {
 		$http({
 			method : 'POST',
@@ -181,6 +201,7 @@ app.controller("groupCtrl", function($scope, $http) {
 		});
 	};
 	
+	// updateGroup -> updateGroup
 	$scope.updateGroup = function() {
 		$http({
 			method : 'POST',
@@ -193,9 +214,11 @@ app.controller("groupCtrl", function($scope, $http) {
 		});
 	};
 });
+
+// schedule controller { DONT TOUCH }
 app.controller("scheduleCtrl", function($scope, $http) {
 	
-
+	// init
 	$scope.init =function(){
 		//console.log("Init");
 		var date = new Date();
@@ -213,7 +236,7 @@ app.controller("scheduleCtrl", function($scope, $http) {
 	
 	
 	//Linking to HTML
-	//Add Schedule
+	//Add Schedule -> schedule/add
 	$scope.addSchedule = function(newSchedule, c, u){
 		var ch = addScheduleA(newSchedule,c,u);
 		if(ch){
