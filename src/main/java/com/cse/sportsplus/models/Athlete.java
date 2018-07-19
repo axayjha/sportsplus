@@ -1,16 +1,19 @@
 package com.cse.sportsplus.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+import org.hibernate.annotations.Formula;
+
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -32,8 +35,10 @@ public class Athlete implements Serializable{
 	@NotNull
 	@Column(name="DOB")
     private String  dob;
-	
-	@Column(name="Age")
+
+    // check for age from dob
+	@Formula("(TIMESTAMPDIFF('YEAR',DOB,CURDATE()))")
+
     private Long age;
 	
 	@NotNull
@@ -158,11 +163,14 @@ public class Athlete implements Serializable{
         this.dob = dob;
     }
 
+    @Transient
     public Long getAge() {
         return age;
     }
 
     public void setAge(Long age) {
+
+
         this.age = age;
     }
 
@@ -296,4 +304,6 @@ public class Athlete implements Serializable{
     public void setPrimarySport(String primarySport) {
         this.primarySport = primarySport;
     }
+
+
 }
