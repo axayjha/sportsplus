@@ -1,65 +1,28 @@
 <div class="well">
 
 <h2> Academy Form</h2>
-<img src="maradona.jpg" alt="maradona" width="20%" height="200 ">
 
-<img src="sachin.jpg" alt="sachin" width="25%" height="200 ">
-
-<img src="fed.jpg" alt="federer" width="25%" height="200 ">
-
-
-<img src="bolt.jpg" alt="bolt" width="25%" height="200 ">
 <form >
-  <br>Name:<br>
-  <input type="text" ng-model="academy.name" >
+  Name:<br>
+  <input type="text" ng-model="academy.name"  class="form-control" style="width: 200px;" placeholder="NAME">
   <br>
   Created Date:<br>
-  <input type="text" ng-model=" academy.created" >
+  <input type="text" ng-model="academy.created" class="form-control" style="width: 200px;" placeholder="MM/DD/YYYY">
   <br>
 Updated Date:<br>
-  <input type="text" ng-model="academy.updated" >
+  <input type="text" ng-model="academy.updated" class="form-control" style="width: 200px;" placeholder="MM/DD/YYY">
   <br>
 <tr>
-				<td><button ng-click="saveAcademy()">Save Academy</button></td>
+				<td><button ng-click="saveAcademy()" class="btn btn-success">Save Academy</button></td>
 			</tr>
 <tr>
-				<td><button ng-click="deleteAcademy()">Delete Academy</button></td>
+				<td><button ng-click="deleteAcademy()" class="btn btn-danger">Delete Academy</button></td>
 			</tr>
 <tr>
-				<td><button ng-click="updateAcademy()">Update Academy</button></td>
+				<td><button ng-click="updateAcademy()" class="btn btn-warning">Update Academy</button></td>
 			</tr>
 </form> 
 <p>newAcademy = {{academy}}</p>
-<style>
-
-h2 {
-    text-align: center;
-    text-transform: uppercase;
-    color: #4CAF50;
-}
-
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-body {
-    background-color: lightblue;
-
-}
->
-</style>
-
 
 <h2>Academy  Table</h2>
 	<div class="clearfix"></div>
@@ -73,7 +36,7 @@ body {
 	<tr ng-repeat="academy in academies">
 			<td>{{academy.name}}</td>
 			<td>{{academy.created}}</td>
-	        <td>{{academy.updated}}</td>
+	        <td>{{academy.upStringd}}</td>
 			
    </tr>
 		

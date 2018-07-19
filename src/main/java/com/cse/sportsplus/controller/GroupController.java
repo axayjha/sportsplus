@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cse.sportsplus.models.Group;
+import com.cse.sportsplus.repository.CoachRepository;
 import com.cse.sportsplus.repository.GroupRepository;
 
 @RestController
@@ -20,6 +21,8 @@ public class GroupController {
 	@Autowired 
 	private GroupRepository groupRepository;
 	
+	@Autowired
+	private CoachRepository coachRepository;
 	
 	@PostMapping("/addGroup")
 	public Group addGroup(@RequestBody Group group) {
@@ -62,6 +65,12 @@ public class GroupController {
 		List<Group> allGroups = groupRepository.findAll();
 		return allGroups;
 	}
+	
+	@GetMapping("/allCoachID")
+	public List<java.math.BigInteger> getAllCoachID(){
+		return coachRepository.getAllCoachID();
+	}
+	
 	
 //	@PostMapping("/addCoach")
 //	public void addCoach(@RequestBody Coach coach) {

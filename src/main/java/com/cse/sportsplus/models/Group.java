@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "group_tbl")
 public class Group implements Serializable{
@@ -15,6 +17,7 @@ public class Group implements Serializable{
 	@Column(name="group_id")
 	private Long groupID;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="academy_id")
 	private Academy academy;

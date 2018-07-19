@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tbl_coach")
 public class Coach implements Serializable {
@@ -43,8 +45,8 @@ public class Coach implements Serializable {
         this.coach_id = coach_id;
     }
 
-
-    //public List<Group> getGroups() { return groups; }
+    @JsonIgnore
+    public Set<Group> getGroups() { return groups; }
 
     public Coach(String name, String qualification, String phone) {
         this.name = name;

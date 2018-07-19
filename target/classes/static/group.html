@@ -1,20 +1,25 @@
-<div>
+<div class="container">
+	<h3>Group Controls</h3>
+<div class="container well">
 	<h3>Add Group</h3>
-		<form>
+		<form class="form" style="width: 500px;">
 	  Group Name:<br>
-	  <input type="text" ng-model="group.groupName">
+	  <input type="text" ng-model="group.groupName" class="form-control" placeholder="GROUP NAME">
 	  <br>
 	  Group Description:<br>
-	  <input type="text" ng-model="group.groupDescription">
+	  <textarea rows="5" ng-model="group.groupDescription" class="form-control" placeholder="GROUP DESCRIPTION"></textarea>
 	  <br>
-	  Group Status:<br>
-	  <input type="text" ng-model="group.groupStatus">
+	   Group Status:<br>
+	  <select ng-model="group.groupStatus" class="form-control">
+		  <option ng-repeat="s in ['Training (Pre-Season)', 'Training (Season)', 'Competition', 'Post-Competition', 'Injured', 'Rehabilitation']">{{s}}</option>
+	  </select>
 	  <br>
 	  Coach ID:<br>
-	  <input type="text" ng-model="group.coachId">
-	  
+	  <select ng-model="group.coach_id" class="form-control" ng-init="getAllCoachID();">
+			<option ng-repeat="cid in allCoach">{{cid}}</option>
+	  </select>
 	  <br><br>
-	  <button ng-click="addGroup()">Add Group</button>
+	  <button ng-click="addGroup()" class="btn btn-success">Add Group</button>
 	</form>
 	
 	<h3>Delete Group</h3>
@@ -65,4 +70,5 @@
 			<td>{{group.groupStatus}}</td>
 		</tr>
 	</table>
+</div>
 </div>
