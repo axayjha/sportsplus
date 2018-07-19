@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import  com.cse.sportsplus.repository.ScheduleRepository;
@@ -48,8 +49,8 @@ public class ScheduleController {
 	}
 
 	@GetMapping("/getGroupID")
-	public List<java.math.BigInteger> getAllGroupID(){
-		return groupRepository.getAllID();
+	public List<java.math.BigInteger> getAllGroupID(@RequestParam Long id){
+		return groupRepository.getAllID(id);
 	}
 	
 	@PostMapping("/delete")

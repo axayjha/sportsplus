@@ -12,5 +12,8 @@ public interface CoachRepository extends JpaRepository<Coach, Long> {
 	@Query(value="select coach_id from tbl_coach", nativeQuery=true)
 	public List<java.math.BigInteger>getAllCoachID();
 	
+	@Query(value="select coach_coach_id from group_tbl_coach where groups_group_id = ?", nativeQuery=true)
+	public List<java.math.BigInteger> getAllCoachIDByGroupID(Long group_id);
+	
 	
 }

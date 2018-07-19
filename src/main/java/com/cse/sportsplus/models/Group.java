@@ -1,6 +1,7 @@
 package com.cse.sportsplus.models;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ public class Group implements Serializable{
 	@Column(name="group_id")
 	private Long groupID;
 
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name="academy_id")
 	private Academy academy;
@@ -31,7 +32,7 @@ public class Group implements Serializable{
 	@Column(name = "groupStatus")
 	private String groupStatus;
 	
-	@ManyToMany(mappedBy="groups")
+	@ManyToMany(targetEntity=Coach.class)
 	private Set<Coach> coach;
 
 	
@@ -39,11 +40,18 @@ public class Group implements Serializable{
 		super();
 	}
 
-	public Group(String groupName, String groupDescription, String groupStatus) {
+	
+	public Group(Long groupID, Academy academy, String groupName, String groupDescription, String groupStatus,
+			Set<Coach> coach) {
+		super();
+		this.groupID = groupID;
+		this.academy = academy;
 		this.groupName = groupName;
 		this.groupDescription = groupDescription;
 		this.groupStatus = groupStatus;
+		this.coach = new HashSet<>(coach);
 	}
+
 
 	public Long getGroupID() {
 		return groupID;
@@ -85,14 +93,14 @@ public class Group implements Serializable{
 	}
 
 
-	//public Set<Coach> getCoach() {return coach; }
+	public Set<Coach> getCoach() {return coach; }
 
 
 	public void setCoach(Set<Coach> coach) {
 		this.coach = coach;
 	}
 
-
+	
 	public Academy getAcademy() {
 		return academy;
 	}

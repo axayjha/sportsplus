@@ -25,10 +25,25 @@ app.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'coach.html',
 		controller : 'coachCtrl'
 	});
+	$routeProvider.when('/athlete', {
+		templateUrl : 'athlete.html',
+		controller : 'athleteCtrl'
+	});
 	$routeProvider.otherwise({
 		redirectTo : '/home'
 	});
 } ]);
+
+function Coach(id){
+	this.coach_id = id;
+};
+
+function Academy(id){
+	this.id = id;
+};
+function Group(id){
+	
+}
 
 // academy controller
 
@@ -106,8 +121,6 @@ app.controller("academyCtrl", function($scope, $http) {
 
 });
 
-<<<<<<< HEAD
-=======
 /* // DONT TOUCH
 app.controller("scheduleCtrl", function($scope, $http) {
 	//Creating validations and functions
@@ -153,7 +166,6 @@ app.controller("scheduleCtrl", function($scope, $http) {
 	};
 
 });
->>>>>>> f7f2329322a8478ee92d35c8efd53d77def86a2d
 
 */
 
@@ -161,7 +173,9 @@ app.controller("scheduleCtrl", function($scope, $http) {
 app.controller("groupCtrl", function($scope, $http) {
 	
 	// addGroup -> addGroup
-	$scope.addGroup = function () {
+	$scope.addGroup = function (academy,coach) {
+		$scope.group.coach = [coach];
+		$scope.academy = academy;
 		$http({
 			method : 'POST',
 			url : 'http://localhost:8080/group/addGroup',
@@ -234,18 +248,69 @@ app.controller("groupCtrl", function($scope, $http) {
 		}).error(function(data, status) {
 			$scope.status = status;
 		});
-	}
+	};
+	$scope.fetchAid = function(){
+		$http({
+			method : 'GET',
+			url : 'http://localhost:8080/schedule/getAcademyID',
+			headers: { 'Content-Type': 'application/json' },
+		}).success(function(data, status) {
+			$scope.aid = data;
+			//console.log($scope.academyID);
+			$scope.enableGroup = true;
+		}).error(function(data, status) {
+			$scope.status = status;
+			$scope.deleteMessage = "Request failed";
+		});
+	};
+	$scope.fetchAid = function(){
+		$http({
+			method : 'GET',
+			url : 'http://localhost:8080/schedule/getAcademyID',
+			headers: { 'Content-Type': 'application/json' },
+		}).success(function(data, status) {
+			$scope.aid = data;
+			//console.log($scope.academyID);
+		}).error(function(data, status) {
+			$scope.status = status;
+			$scope.deleteMessage = "Request failed";
+		});
+	};
+	$scope.fetchGid = function(s){
+		$http({
+			method : 'GET',
+			url : 'http://localhost:8080/schedule/getGroupID?id=' + s,
+			headers: { 'Content-Type': 'application/json' },
+		}).success(function(data, status) {
+			//console.log(s);
+			//console.log(data);
+			$scope.gid = data;
+		}).error(function(data, status) {
+			$scope.status = status;
+			$scope.deleteMessage = "Request failed";
+		});
+	};
+	$scope.addCoach = function(acg, nc){
+		acg.coach = [nc];
+		console.log(acg);
+		$http({
+			method : 'POST',
+			url : 'http://localhost:8080/group/addCoach',
+			data : acg
+		}).success(function(data, status) {
+			alert("Coach added");
+		}).error(function(data, status) {
+			$scope.status = status;
+		});
+	};
 });
-
+//Coach Controller
 app.controller("coachCtrl", function($scope, $http){
-
-	
-
 	$scope.addCoach = function(ch){
 		if(Object.keys(ch).length < 3){
 			alert("Fields cannot be left blank");
 			return;
-		}
+		};
 
 		$http({
 			method : 'POST',
@@ -307,7 +372,123 @@ app.controller("coachCtrl", function($scope, $http){
 			$scope.deleteMessage = "Request failed";
 		});
 	};
+
+
 });
+
+app.controller("athleteCtrl", function($scope, $http){
+	$scope.addAthlete = function(ath, c){
+		console.log(ath);
+		var v = new Date(c.yy,c.mm-1,c.dd,0,0,0,0);
+		ath.dob = v.getTime();
+		var ageDifMs = Date.now() - v.getTime();
+    	var ageDate = new Date(ageDifMs); // miliseconds from epoch
+		ath.age =  Math.abs(ageDate.getUTCFullYear() - 1970);
+		$http({
+			method : 'POST',
+			url : 'http://localhost:8080/Athlete/addAthlete',
+			headers: { 'Content-Type': 'application/json' },
+			data: ath
+		}).success(function(data, status) {
+			alert("Success");
+			console.log(data);
+			$scope.fetchAth(data.id);
+		}).error(function(data, status) {
+			$scope.status = status;
+			$scope.deleteMessage = "Request failed";
+		});
+	};
+	$scope.fetchAid = function(){
+		$http({
+			method : 'GET',
+			url : 'http://localhost:8080/schedule/getAcademyID',
+			headers: { 'Content-Type': 'application/json' },
+		}).success(function(data, status) {
+			$scope.aid = data;
+			//console.log($scope.academyID);
+			$scope.enableGroup = true;
+		}).error(function(data, status) {
+			$scope.status = status;
+			$scope.deleteMessage = "Request failed";
+		});
+	};
+	$scope.fetchGid = function(s){
+		$http({
+			method : 'GET',
+			url : 'http://localhost:8080/schedule/getGroupID?id=' + s,
+			headers: { 'Content-Type': 'application/json' },
+		}).success(function(data, status) {
+			//console.log(s);
+			//console.log(data);
+			$scope.gid = data;
+		}).error(function(data, status) {
+			$scope.status = status;
+			$scope.deleteMessage = "Request failed";
+		});
+	};
+	$scope.fetchCid = function(g){
+		
+		$http({
+			method : 'GET',
+			url : 'http://localhost:8080/Athlete/coachByGroupID?group_id=' + g, 
+			headers: { 'Content-Type': 'application/json' },
+		}).success(function(data, status) {
+			$scope.cid = data;
+			//console.log($scope.academyID);
+			$scope.enableGroup = true;
+		}).error(function(data, status) {
+			$scope.status = status;
+			$scope.deleteMessage = "Request failed";
+		});
+	};
+	$scope.fetchAth = function(athid){
+		$http({
+			method : 'GET',
+			url : 'http://localhost:8080/Athlete/athleteByID?id=' + athid, 
+			headers: { 'Content-Type': 'application/json' },
+		}).success(function(data, status) {
+			$scope.ath = data;
+			var v = new Date(data.dob);
+			$scope.dd = v.getDate();
+			$scope.mm = v.getMonth()+1;
+			$scope.yy = v.getFullYear();
+			//console.log($scope.academyID);
+		}).error(function(data, status) {
+			$scope.status = status;
+			$scope.deleteMessage = "Request failed";
+		});
+	};
+	$scope.deleteAth = function(ath){
+		$http({
+			method : 'POST',
+			url : 'http://localhost:8080/Athlete/deleteAthlete', 
+			headers: { 'Content-Type': 'application/json' },
+			data:ath
+		}).success(function(data, status) {
+			$scope.ath = data;
+			$scope.viewAth = false;
+			alert("Delete Success");
+			//console.log($scope.academyID);
+		}).error(function(data, status) {
+			console.log(data);
+			$scope.status = status;
+			$scope.viewAth = false;
+			alert("Request failed");
+		});
+	};
+	$scope.updtAth = function(ath, d, m, y){
+		var c = function(d,m,y){
+			this.dd = d;
+			this.mm = m;
+			this.yy = y;
+		};
+		var v = new c(d,m,y);
+		$scope.addAthlete(ath,new c(d,m,y));
+		$scope.enableEdit = false;
+		$scope.fetchAth(ath.id);
+	};
+});
+
 
 // schedule controller { DONT TOUCH }
 app.controller("scheduleCtrl", function($scope, $http) {
@@ -327,7 +508,7 @@ app.controller("scheduleCtrl", function($scope, $http) {
 	};
 
 	//Creating validations and functions
-	
+	var mnth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 	
 	//Linking to HTML
 	//Add Schedule -> schedule/add
@@ -356,7 +537,48 @@ app.controller("scheduleCtrl", function($scope, $http) {
 			alert("Updated date should not be left blank");
 			return false;
 		}
-		
+		if(c.yy%400==0||c.yy%100!=0&&c.yy%4==0){
+			if(c.mm == 2 && c.dd > 29){
+				alert("Invalid Number of days for Feburary. (Scheduled)");
+				return;
+			}else{
+				if(mnth[c.mm-1] < c.dd && c.mm != 2){
+					alert("Invalid Number of days (Scheduled)");
+					return;
+				}
+			}
+		}else{
+			if(c.mm == 2 && c.dd > 28){
+				alert("Invalid Number of days for Feburary. (Scheduled)");
+				return;
+			}else{
+				if(mnth[c.mm-1] < c.dd && c.mm != 2){
+					alert("Invalid Number of days (Scheduled)");
+					return;
+				}
+			}
+		}
+		if(c.yy%400==0||c.yy%100!=0&&c.yy%4==0){
+			if(u.mm == 2 && u.dd > 29){
+				alert("Invalid Number of days for Feburary. (Updated)");
+				return;
+			}else{
+				if(mnth[u.mm-1] < u.dd && c.mm != 2){
+					alert("Invalid Number of days (Updated)");
+					return;
+				}
+			}
+		}else{
+			if(u.mm == 2 && u.dd > 28){
+				alert("Invalid Number of days for Feburary. (Updated)");
+				return;
+			}else{
+				if(mnth[u.mm-1] < u.dd && c.mm != 2){
+					alert("Invalid Number of days (Updated)");
+					return;
+				}
+			}
+		}
 		//Check if selected date is greater than current date date
 		var v = new Date(c.yy,c.mm-1,c.dd,c.hrs,c.min,0,0);
 		var date = new Date()
@@ -467,7 +689,7 @@ app.controller("scheduleCtrl", function($scope, $http) {
 	$scope.fetchAllGroupID = function(s){
 		$http({
 			method : 'GET',
-			url : 'http://localhost:8080/schedule/getGroupID',
+			url : 'http://localhost:8080/schedule/getGroupID?id=' + s,
 			headers: { 'Content-Type': 'application/json' },
 		}).success(function(data, status) {
 			//console.log(s);

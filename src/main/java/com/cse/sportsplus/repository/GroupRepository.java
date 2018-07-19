@@ -23,12 +23,8 @@ public interface GroupRepository extends JpaRepository<Group,Long>
 	
 	
 	
-	@Query(value= "select group_id from group_tbl", nativeQuery=true)
-	List<java.math.BigInteger> getAllID();
+	@Query(value= "select group_id from group_tbl where academy_id = ?", nativeQuery=true)
+	List<java.math.BigInteger> getAllID(Long id);
 	
-	@Modifying
-	@Query(value = "insert into group_coach values (?, ?)", nativeQuery=true)
-	@Transactional
-	public void addGroupAndCoach(java.math.BigInteger a, java.math.BigInteger b);
 	
 }

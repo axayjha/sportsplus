@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.cse.sportsplus.models.Athlete;
 import com.cse.sportsplus.models.Athlete;
 import com.cse.sportsplus.repository.AthleteRepository;
+import com.cse.sportsplus.repository.CoachRepository;
 
 @RestController
 @RequestMapping("/Athlete")
@@ -15,6 +16,11 @@ public class AthleteController {
 	
 	@Autowired
 	private AthleteRepository arepo;
+	
+	@Autowired
+	private CoachRepository coachRepo;
+	
+	
 	@GetMapping("/getallAthlete")
 	public List<Athlete> AthleteList()
 	{
@@ -28,6 +34,7 @@ public class AthleteController {
 	@PostMapping("/addAthlete")
 	public Athlete AthleteAdd(@RequestBody Athlete Athlete)
 	{
+		
 		arepo.saveAndFlush(Athlete);
 		
 		return Athlete;
@@ -48,5 +55,15 @@ public class AthleteController {
     public Athlete getAthleteByName(@PathVariable(value ="name" ) String name){
 	    return arepo.findByFirstName(name);
      }
+	 
+	 @GetMapping("/coachByGroupID")
+	 public List<java.math.BigInteger> getCoachID(Long group_id){
+		 return coachRepo.getAllCoachIDByGroupID(group_id);
+	 }
+	 @GetMapping("/athleteByID")
+	 public Athlete getByID(@RequestParam Long id) {
+		 return arepo.findAth(id);
+	 }
+	 
 
 }

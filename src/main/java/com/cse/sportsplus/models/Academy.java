@@ -28,11 +28,18 @@ public class Academy implements Serializable {
 
 		Academy(){}
 
-	public Academy(String name, Long created, Long upStringd) {
-		this.name = name;
-		this.created = created;
-		this.upStringd = upStringd;
-	}
+	
+
+	public Academy(Long id, String name, Long created, Long upStringd, List<Group> groupList) {
+			super();
+			this.id = id;
+			this.name = name;
+			this.created = created;
+			this.upStringd = upStringd;
+			this.groupList = groupList;
+		}
+
+
 
 	public Long getId() {
 			return id;

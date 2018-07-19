@@ -1,8 +1,12 @@
-<div class="container">
+<div class="container" ng-init="enableGroup=true">
 	<h3>Group Controls</h3>
 <div class="container well">
 	<h3>Add Group</h3>
 		<form class="form" style="width: 500px;">
+		Academy ID:<br>
+	  <select class="form-control" ng-init="fetchAid()" ng-model="academy.id">
+		<option ng-repeat="s in aid">{{s}}</option>
+	  </select>
 	  Group Name:<br>
 	  <input type="text" ng-model="group.groupName" class="form-control" placeholder="GROUP NAME">
 	  <br>
@@ -15,47 +19,65 @@
 	  </select>
 	  <br>
 	  Coach ID:<br>
-	  <select ng-model="group.coach_id" class="form-control" ng-init="getAllCoachID();">
+	  <select ng-model="c.coach_id" class="form-control" ng-init="getAllCoachID();">
 			<option ng-repeat="cid in allCoach">{{cid}}</option>
 	  </select>
 	  <br><br>
-	  <button ng-click="addGroup()" class="btn btn-success">Add Group</button>
+	  <button ng-click="addGroup(academy,c)" class="btn btn-success">Add Group</button>
 	</form>
-	
-	<h3>Delete Group</h3>
+	<div style="width: 500px;">
+	<h3>View, Delete And Update</h3>
+	<div>
+		<h5>Add Coaches:</h5>
+		Academy ID:<br>
+	  	<select class="form-control" ng-init="fetchAid()" ng-model="academy.id" ng-change="fetchGid(academy.id);enableGroup=false">
+			<option ng-repeat="s in aid">{{s}}</option>
+		</select>
+		Group ID:  
+		<select class="form-control" ng-model="acg.groupID" ng-disabled="enableGroup">
+			<option ng-repeat="gID in gid">{{gID}}</option>
+		</select>
+		Coach ID:
+		<select ng-model="nc.coach_id" class="form-control" ng-init="getAllCoachID();">
+				<option ng-repeat="cid in allCoach">{{cid}}</option>
+		</select>
+		<p style="height: 20px;"></p>
+		<button class="btn btn-success" ng-click="addCoach(acg, nc)">Add Coach</button>
+	</div>
+	<h4>Delete Group</h4>
 	<form>
 		Group ID:<br>
 		<input type="text" ng-model="group.groupID">
 		<br>
-		<button ng-click="deleteGroup()">Delete</button>
+		<button ng-click="deleteGroup()" class="btn btn-danger">Delete</button>
 	</form> 
 	
 	
-	<h3>Update Group</h3>
+	<h4>Update Group</h4>
 	<form>
 		Group ID: <br>
-		<input type="text" ng-model="group1.groupID">
+		<input type="text" ng-model="group1.groupID" class="form-control">
 		<button ng-click="fetchGroup()">Fetch</button>
 		<br>
 		Group Name: {{groupData.groupName}}
 		
 		<br>
-		<input type="text" ng-model="group1.groupName">
+		<input type="text" ng-model="group1.groupName" class="form-control">
 		<br>
 		Group Description: {{groupData.groupDescription}}
 		
 		<br>
-		<input type="text"  ng-model="group1.groupDescription">
+		<input type="text"  ng-model="group1.groupDescription" class="form-control">
 		<br>
 		Group Status: {{groupData.groupStatus}}
 		<br>
-		<input type="text" ng-model="group1.groupStatus">
+		<input type="text" ng-model="group1.groupStatus" class="form-control">
 		<br>
-		<button ng-click="updateGroup()">Update</button>
+		<button ng-click="updateGroup()" class="btn btn-success">Update</button>
 	</form>
 	
-	<h3>All Groups</h3>
-	<button ng-click="getAllGroups()">Get Details</button>
+	<h4>All Groups</h4>
+	<button ng-click="getAllGroups()" class="btn btn-primary">Get Details</button>
 	<table>
 		<tr>
 			<th>Group Id</th>
@@ -70,5 +92,6 @@
 			<td>{{group.groupStatus}}</td>
 		</tr>
 	</table>
+</div>
 </div>
 </div>
