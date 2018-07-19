@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="academy_table")
 public class Academy implements Serializable {
+
 	 	@Id
 	    @GeneratedValue
 	    @Column(name="Academy_id")
@@ -15,10 +16,10 @@ public class Academy implements Serializable {
 		private String name;
 
 	 	@Column(name="created")
-		private String created;
+		private Long created;
 
 	 	@Column(name="upStringd")
-		private String upStringd;
+		private Long upStringd;
 
 	 	@OneToMany(mappedBy = "academy")
 	 	private List<Group> groupList;
@@ -27,7 +28,7 @@ public class Academy implements Serializable {
 
 		Academy(){}
 
-	public Academy(String name, String created, String upStringd) {
+	public Academy(String name, Long created, Long upStringd) {
 		this.name = name;
 		this.created = created;
 		this.upStringd = upStringd;
@@ -51,19 +52,19 @@ public class Academy implements Serializable {
 			this.name = name;
 		}
 
-		public String getCreated() {
+		public Long getCreated() {
 			return created;
 		}
 
-		public void setCreated(String created) {
+		public void setCreated(Long created) {
 			this.created = created;
 		}
 
-		public String getUpStringd() {
+		public Long getUpStringd() {
 			return upStringd;
 		}
 
-		public void setUpStringd(String upStringd) {
+		public void setUpStringd(Long upStringd) {
 			this.upStringd = upStringd;
 		}
 

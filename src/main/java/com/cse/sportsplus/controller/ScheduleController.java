@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import  com.cse.sportsplus.repository.ScheduleRepository;
 import com.cse.sportsplus.models.Schedule;
 import com.cse.sportsplus.repository.AcademyRepository;
 import com.cse.sportsplus.repository.GroupRepository;
-import com.cse.sportsplus.repository.ScheduleRepository;
+
 
 @RestController
 @RequestMapping("/schedule") 

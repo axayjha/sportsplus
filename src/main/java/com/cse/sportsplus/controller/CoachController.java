@@ -35,8 +35,8 @@ public class CoachController {
 	}
 	
 	@PostMapping("/delete")
-	public void coachDelete(@RequestParam("coach_id") Long cid) {
-		coachRepository.deleteById(cid);
+	public void coachDelete(@RequestBody Coach cid) {
+		coachRepository.deleteById(cid.getCoach_id());
 	}
 	
 	@PostMapping("/update")
