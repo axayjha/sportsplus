@@ -92,6 +92,7 @@ public class Group implements Serializable{
 		this.coach = coach;
 	}
 
+
 	public Academy getAcademy() {
 		return academy;
 	}

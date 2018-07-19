@@ -5,6 +5,10 @@ app.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/home', {
 		templateUrl : 'home.html'
 	});
+	
+	$routeProvider.when('/index', {
+		templateUrl : 'index.html'
+	});
 	$routeProvider.when('/academy', {
 		templateUrl : 'academy.html',
 		controller : 'academyCtrl'
@@ -26,8 +30,11 @@ app.config([ '$routeProvider', function($routeProvider) {
 	});
 } ]);
 
+// academy controller
+
 app.controller("academyCtrl", function($scope, $http) {
 
+	// fetchAcademy -> getAll
 	$scope.fetchAcademy = function() {
 		$http({
 			method : 'GET',
@@ -42,7 +49,7 @@ app.controller("academyCtrl", function($scope, $http) {
 		});
 	};
 	
-	
+	// saveAcademy -> add
 	$scope.saveAcademy = function() {
 		$scope.academy.created = new Date($scope.academy.created).getTime();
 		console.log($scope.academy.created);
@@ -62,6 +69,8 @@ app.controller("academyCtrl", function($scope, $http) {
 			$scope.data = "Request failed";
 		});
 	};
+	
+	// deleteAcademy -> delete
 	$scope.deleteAcademy = function() {
 		$http({
 			method : 'POST',
@@ -77,6 +86,8 @@ app.controller("academyCtrl", function($scope, $http) {
 			$scope.data = "Request failed";
 		});
 	};
+	
+	// updateAcademy -> update
 	$scope.updateAcademy = function() {
 		$http({
 			method : 'POST',
@@ -95,8 +106,61 @@ app.controller("academyCtrl", function($scope, $http) {
 
 });
 
+<<<<<<< HEAD
+=======
+/* // DONT TOUCH
+app.controller("scheduleCtrl", function($scope, $http) {
+	//Creating validations and functions
+	
+	//Validation if the fields are empty or not
+	var addScheduleValidate = function(scheduleObject){
+		Object.keys(scheduleObject).forEach(function(key){
+			if(scheduleObject[key] == ""){
+				return false;
+			}
+			return true;
+		});
+	};
 
+	
+	//Linking to HTML
+	//Add Schedule
+	$scope.addSchedule = function(newSchedule){
+		var checkIfOkay = addScheduleValidate(newSchedule);
+		//Check if selected date is greater than current date date
+		var date = new Date();
+		if(newSchedule.date < date){
+			$scope.dateMessage = "Selected Date should be greater than current date";
+			checkIfOkay = false;
+		}
+		if(checkIfOkay){
+			$http({
+				method : 'POST',
+				url : 'http://localhost:8080/schedule/add',
+				headers: { 'Content-Type': 'application/json' },
+				data:newSchedule
+			}).success(function(data, status) {
+				console.log(data);
+				$scope.message = "Sucessfully Added. You are good to go";
+			}).error(function(data, status) {
+				$scope.status = status;
+				$scope.data = "Request failed";
+			});
+		}else{
+			$scope.message = "Fields were left empty. Please fill in the requires Details";
+		}
+		
+	};
+
+});
+>>>>>>> f7f2329322a8478ee92d35c8efd53d77def86a2d
+
+*/
+
+// group controller
 app.controller("groupCtrl", function($scope, $http) {
+	
+	// addGroup -> addGroup
 	$scope.addGroup = function () {
 		$http({
 			method : 'POST',
@@ -109,6 +173,7 @@ app.controller("groupCtrl", function($scope, $http) {
 		});
 	};
 	
+	// getAllGroups -> getGroups
 	$scope.getAllGroups = function() {
 		$http({
 			method : 'GET',
@@ -121,6 +186,7 @@ app.controller("groupCtrl", function($scope, $http) {
 		});
 	};
 	
+	// deleteGroup -> deleteGroup
 	$scope.deleteGroup = function() {
 		$http({
 			method : 'POST',
@@ -133,6 +199,7 @@ app.controller("groupCtrl", function($scope, $http) {
 		});
 	};
 	
+	// fetchGroup -> getAGroup
 	$scope.fetchGroup = function() {
 		$http({
 			method : 'POST',
@@ -145,6 +212,7 @@ app.controller("groupCtrl", function($scope, $http) {
 		});
 	};
 	
+	// updateGroup -> updateGroup
 	$scope.updateGroup = function() {
 		$http({
 			method : 'POST',
@@ -240,9 +308,11 @@ app.controller("coachCtrl", function($scope, $http){
 		});
 	};
 });
+
+// schedule controller { DONT TOUCH }
 app.controller("scheduleCtrl", function($scope, $http) {
 	
-
+	// init
 	$scope.init =function(){
 		//console.log("Init");
 		var date = new Date();
@@ -260,7 +330,7 @@ app.controller("scheduleCtrl", function($scope, $http) {
 	
 	
 	//Linking to HTML
-	//Add Schedule
+	//Add Schedule -> schedule/add
 	$scope.addSchedule = function(newSchedule, c, u){
 		var ch = addScheduleA(newSchedule,c,u);
 		if(ch){
