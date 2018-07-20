@@ -48,6 +48,7 @@ public class Coach implements Serializable {
     @JsonIgnore
     public Set<Group> getGroups() { return groups; }
 
+    // Parameterized constructor
     public Coach(String name, String qualification, String phone) {
         this.name = name;
         this.qualification = qualification;
