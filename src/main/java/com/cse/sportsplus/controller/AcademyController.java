@@ -22,13 +22,13 @@ import com.cse.sportsplus.repository.GroupRepository;
 
 
 @RestController
-@RequestMapping("/academy") 
+@RequestMapping("/academy") //class level mapping
 public class AcademyController {
 	
-	@Autowired
+	@Autowired //implements IOC
 	private AcademyRepository academyRepository;
 	
-	@Autowired
+	@Autowired 
 	private CoachRepository coachRepository;
 	
 	@Autowired
