@@ -2,6 +2,7 @@ package com.cse.sportsplus.repository;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,7 +21,10 @@ public interface GroupRepository extends JpaRepository<Group,Long>
 	BigInteger aid(Long group_id);
 
 	
-	
+	@Modifying
+	@Query(value="delete from group_tbl where groupID in ?" , nativeQuery=true)
+	@Transactional
+	public void deleteCoach(Set<Long> g_id);
 	
 	
 	@Query(value= "select group_id from group_tbl where academy_id = ?", nativeQuery=true)
