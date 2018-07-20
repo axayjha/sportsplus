@@ -2,10 +2,10 @@
 var app = angular.module("app", [ "ngRoute" ]);
 
 app.config([ '$routeProvider', function($routeProvider) {
-	$routeProvider.when('/home', {
-		templateUrl : 'home.html'
-	});
-	
+	// $routeProvider.when('/home', {
+	// 	templateUrl : 'home.html'
+	// });
+	//
 	$routeProvider.when('/index', {
 		templateUrl : 'index.html'
 	});
@@ -30,7 +30,7 @@ app.config([ '$routeProvider', function($routeProvider) {
 		controller : 'athleteCtrl'
 	});
 	$routeProvider.otherwise({
-		redirectTo : '/home'
+		redirectTo : '/index'
 	});
 } ]);
 
@@ -416,6 +416,7 @@ app.controller("athleteCtrl", function($scope, $http){
 
 		if(v < date){
 			$scope.dateMessage = "Date of Birth should be less than current date";
+
 			//console.log("error");
 			alert("Date of Birth should be less than current date");
 			return false;

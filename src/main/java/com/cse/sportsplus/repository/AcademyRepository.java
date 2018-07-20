@@ -1,5 +1,6 @@
 package com.cse.sportsplus.repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,7 +15,8 @@ public interface AcademyRepository extends JpaRepository<Academy, Long> {
  
  
  
- 
+ @Query(value = "select Academy_id from academy_table where Name like ?",nativeQuery = true)
+ Long getAcademyId(String name);
  
  
  //Required for Schedule
