@@ -1,100 +1,223 @@
-<div class="container" ng-init="enableGroup=true">
-	<h3>Group Controls</h3>
-<div class="container well">
-	<h3>Add Group</h3>
-		<form class="form" style="width: 500px;">
-		Academy ID:<br>
-	  <select class="form-control" ng-init="fetchAid()" ng-model="academy.id">
-		<option ng-repeat="s in aid">{{s}}</option>
-	  </select>
-	  Group Name:<br>
-	  <input type="text" ng-model="group.groupName" class="form-control" placeholder="GROUP NAME">
-	  <br>
-	  Group Description:<br>
-	  <textarea rows="5" ng-model="group.groupDescription" class="form-control" placeholder="GROUP DESCRIPTION"></textarea>
-	  <br>
-	   Group Status:<br>
-	  <select ng-model="group.groupStatus" class="form-control">
-		  <option ng-repeat="s in ['Training (Pre-Season)', 'Training (Season)', 'Competition', 'Post-Competition', 'Injured', 'Rehabilitation']">{{s}}</option>
-	  </select>
-	  <br>
-	  Coach ID:<br>
-	  <select ng-model="c.coach_id" class="form-control" ng-init="getAllCoachID();">
-			<option ng-repeat="cid in allCoach">{{cid}}</option>
-	  </select>
-	  <br><br>
-	  <button ng-click="addGroup(academy,c)" class="btn btn-success">Add Group</button>
-	</form>
-	<div style="width: 500px;">
-	<h3>View, Delete And Update</h3>
-	<div>
-		<h5>Add Coaches:</h5>
-		Academy ID:<br>
-	  	<select class="form-control" ng-init="fetchAid()" ng-model="academy.id" ng-change="fetchGid(academy.id);enableGroup=false">
-			<option ng-repeat="s in aid">{{s}}</option>
-		</select>
-		Group ID:  
-		<select class="form-control" ng-model="acg.groupID" ng-disabled="enableGroup">
-			<option ng-repeat="gID in gid">{{gID}}</option>
-		</select>
-		Coach ID:
-		<select ng-model="nc.coach_id" class="form-control" ng-init="getAllCoachID();">
-				<option ng-repeat="cid in allCoach">{{cid}}</option>
-		</select>
-		<p style="height: 20px;"></p>
-		<button class="btn btn-success" ng-click="addCoach(acg, nc)">Add Coach</button>
-	</div>
-	<h4>Delete Group</h4>
-	<form>
-		Group ID:<br>
-		<input type="text" ng-model="group.groupID">
-		<br>
-		<button ng-click="deleteGroup()" class="btn btn-danger">Delete</button>
-	</form> 
-	
-	
-	<h4>Update Group</h4>
-	<form>
-		Group ID: <br>
-		<div class="form-inline">
-		<input type="text" ng-model="group1.groupID" class="form-control">
-		<button ng-click="fetchGroup()" class="btn btn-primary">Fetch</button>
-		</div>
-		<br>
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 
-		Group Name: {{groupData.groupName}}
-		
-		<br>
-		<input type="text" ng-model="group1.groupName" class="form-control">
-		<br>
-		Group Description: {{groupData.groupDescription}}
-		
-		<br>
-		<input type="text"  ng-model="group1.groupDescription" class="form-control">
-		<br>
-		Group Status: {{groupData.groupStatus}}
-		<br>
-		<input type="text" ng-model="group1.groupStatus" class="form-control">
-		<br>
-		<button ng-click="updateGroup()" class="btn btn-success">Update</button>
-	</form>
-	
-	<h4>All Groups</h4>
-	<button ng-click="getAllGroups()" class="btn btn-primary">Get Details</button>
-	<table>
-		<tr>
-			<th>Group Id</th>
-			<th>Group Name</th>
-			<th>Group Description</th>
-			<th>Group Status</th>
-		</tr>
-		<tr ng-repeat="group in groups">
-			<td>{{group.groupID}}</td>
-			<td>{{group.groupName}}</td>
-			<td>{{group.groupDescription}}</td>
-			<td>{{group.groupStatus}}</td>
-		</tr>
-	</table>
-</div>
-</div>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Groups -- SportsPlus</title>
+
+<!-- For-Mobile-Apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Sportive a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //For-Mobile-Apps -->
+
+<!-- Custom-Stylesheet-Links -->
+	<!-- Bootstrap-Core-CSS --> <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all" />
+	<!-- Index-Page-CSS --> <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<!-- //Custom-Stylesheet-Links -->
+
+<!-- Web-Fonts -->
+	<link href='//fonts.googleapis.com/css?family=Carter+One' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
+<!-- //Web-Fonts -->
+
+</head>
+<body>
+
+	<!-- Header -->
+
+		<!-- Banner -->
+		<div class="banner">
+			<img src="images/team.jpg" alt="Sportive">
+				<div class="caption">
+					<h1>Group Control</h1>
+				</div>
+		</div>
+		<!-- //Banner -->
+
+	</div>
+	<!-- //Header -->
+
+	<div class="container" ng-init="enableGroup=true" style="margin-top: 50px;"ng-init="showTable=false;">
+		<div class="row">
+			<div class="col-md-1"><img src="grp.png" width="100px" height="100px"></div>
+
+		</div>
+		<div class="container well" style="margin-top: 20px">
+			<h3>Add Group</h3>
+			<form class="form" style="width: 500px;">
+				Academy ID:<br>
+				<select class="form-control" ng-init="fetchAid()" ng-model="academy.id">
+					<option ng-repeat="s in aid">{{s}}</option>
+				</select>
+				Group Name:<br>
+				<input type="text" ng-model="group.groupName" class="form-control" placeholder="GROUP NAME">
+				<br>
+				Group Description:<br>
+				<textarea rows="5" ng-model="group.groupDescription" class="form-control" placeholder="GROUP DESCRIPTION"></textarea>
+				<br>
+				Group Status:<br>
+				<select ng-model="group.groupStatus" class="form-control">
+					<option ng-repeat="s in ['Training (Pre-Season)', 'Training (Season)', 'Competition', 'Post-Competition', 'Injured', 'Rehabilitation']">{{s}}</option>
+				</select>
+				<br>
+				Coach ID:<br>
+				<select ng-model="c.coach_id" class="form-control" ng-init="getAllCoachID();">
+					<option ng-repeat="cid in allCoach">{{cid}}</option>
+				</select>
+				<br><br>
+				<button ng-click="addGroup(academy,c)" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add Group</button>
+			</form>
+		</div>
+		<div class="row container">
+			<h3>View, Delete And Update</h3>
+			<div class="col-lg-5 well">
+				<h3>Add Coaches:</h3>
+				Academy ID:<br>
+				<select class="form-control" ng-init="fetchAid()" ng-model="academy.id" ng-change="fetchGid(academy.id);enableGroup=false">
+					<option ng-repeat="s in aid">{{s}}</option>
+				</select>
+				Group ID:
+				<select class="form-control" ng-model="acg.groupID" ng-disabled="enableGroup">
+					<option ng-repeat="gID in gid">{{gID}}</option>
+				</select>
+				Coach ID:
+				<select ng-model="nc.coach_id" class="form-control" ng-init="getAllCoachID();">
+					<option ng-repeat="cid in allCoach">{{cid}}</option>
+				</select>
+				<p style="height: 20px;"></p>
+				<button class="btn btn-success" ng-click="addCoach(acg, nc)"><span class="glyphicon glyphicon-plus"></span> Add Coach</button>
+			</div>
+			<div class="col-lg-1"></div>
+			<div class="col-lg-6 well">
+				<h4>Update Group</h4>
+				<form>
+					Group ID: <br>
+					<div class="form-inline">
+						<input type="text" ng-model="groupData.groupID" class="form-control" ng-disabled="idDisable">
+						<button ng-click="fetchGroup();idDisable=true" class="btn btn-primary"><span class="glyphicon glyphicon-menu-right"></span> Fetch</button>
+					</div>
+					<br>
+					Group Name:
+					<br>
+					<input type="text" ng-model="groupData.groupName" class="form-control">
+					<br>
+					Group Description:
+					<br>
+					<textarea rows="3" type="text"  ng-model="groupData.groupDescription" class="form-control"></textarea>
+					<br>
+					Group Status:
+					<br>
+					<select ng-model="groupData.groupStatus" class="form-control">
+						<option ng-repeat="s in ['Training (Pre-Season)', 'Training (Season)', 'Competition', 'Post-Competition', 'Injured', 'Rehabilitation']">{{s}}</option>
+					</select>
+					<br>
+					<button ng-click="updateGroup(groupData);idDisable=false" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span> Update</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="row well">
+		<h4>All Groups</h4>
+		<button ng-click="getAllGroups(); showTable=!showTable" class="btn btn-primary"><span class="glyphicon glyphicon-list"></span> Get Details</button>
+		<table class="table" ng-show="showTable">
+			<tr>
+				<th>Group Id</th>
+				<th>Group Name</th>
+				<th>Group Description</th>
+				<th>Group Status</th>
+				<th>Delete</th>
+			</tr>
+			<tr ng-repeat="grp in groups">
+				<td>{{grp.groupID}}</td>
+				<td>{{grp.groupName}}</td>
+				<td>{{grp.groupDescription}}</td>
+				<td>{{grp.groupStatus}}</td>
+				<td><button  class="btn btn-danger" ng-click="deleteGroup(grp)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>
+			</tr>
+		</table>
+	</div>
+	</div>
+
+
+	<!-- Footer -->
+	<div class="footer">
+		<div class="container">
+
+			<div class="footer-top">
+				<div class="footer-grids">
+					<div class="col-md-3 col-sm-3 address">
+						<h5>Address</h5>
+						<ul>
+							<li>STCET</li>
+							<li>700019</li>
+							<li>KHIDIRPUR</li>
+							<li>KOLKATA , INDIA</li>
+							<li>www.stcet.org</li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-sm-3 contact">
+						<h5>Contact</h5>
+						<div class="phone">
+							<p>033 456 7890</p>
+							<p>033 789 3450</p>
+						</div>
+
+						<div class="mail">
+							<form>
+								<input type="text" placeholder="Email address" required="">
+								<input type="submit" value="Subscribe">
+							</form>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-md-6 col-sm-6 connect">
+						<h5>Connect</h5>
+						<div class="connect-social">
+							<ul>
+								<li><a href="#" class="facebook" title="Go to Our Facebook Page"></a></li>
+								<li><a href="#" class="twitter" title="Go to Our Twitter Account"></a></li>
+								<li><a href="#" class="googleplus" title="Go to Our Google Plus Account"></a></li>
+								<li><a href="#" class="linkedin" title="Go to Our Linkedin Page"></a></li>
+								<li><a href="#" class="blogger" title="Go to Our Blogger Account"></a></li>
+								<li><a href="#" class="tumblr" title="Go to Our Tumblr Page"></a></li>
+								<li><a href="#" class="rss" title="Go to Our RSS Feed"></a></li>
+								<li><a href="#" class="youtube" title="Go to Our Youtube Channel"></a></li>
+								<li><a href="#" class="vimeo" title="Go to Our Vimeo Channel"></a></li>
+								<li><a href="#" class="deviantart" title="Go to Our Deviantart Page"></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="copyright">
+					<p>&copy; 2018 SportsPlus. All Rights Reserved | Design by CSE Team1</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+	</div>
+	</div>
+
+</body>
+</html>
+
+
+
+<!-- All Images are for reference and illustration puropse only. -->
+<!-- Unsplash-Link
+	Images were taken from the website UNSPLASH - https://unsplash.com/
+-->
+<!-- Flaticon-Link:
+	Icons were taken from the website FLATICON "http://www.flaticon.com" made by "http://www.freepik.com" is licensed by "http://creativecommons.org/licenses/by/3.0/" CC 3.0. BY
+-->

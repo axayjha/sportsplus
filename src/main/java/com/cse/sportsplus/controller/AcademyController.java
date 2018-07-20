@@ -22,13 +22,13 @@ import com.cse.sportsplus.repository.GroupRepository;
 
 
 @RestController
-@RequestMapping("/academy") //class level mapping
+@RequestMapping("/academy") 
 public class AcademyController {
 	
-	@Autowired //implements IOC
+	@Autowired
 	private AcademyRepository academyRepository;
 	
-	@Autowired 
+	@Autowired
 	private CoachRepository coachRepository;
 	
 	@Autowired
@@ -37,21 +37,19 @@ public class AcademyController {
 	@Autowired
 	private AthleteRepository athleteRepository;
 	
-	//Add new academy
+	
 	@PostMapping("/add")
 	public Academy addAcademy(@RequestBody Academy academy) {
 		return academyRepository.save(academy);
 	}
 	
-	//Display academy details
 	@GetMapping("/getAll")
 	public List<Academy> getAll() {
 		return academyRepository.findAll();
 	}
-	
-	//Delete specific academy and its related coach, group data
 	@PostMapping("/delete")
 	public void deleteAcademy(@RequestBody Academy academy) {
+
 		Long aid = academy.getId();
 		athleteRepository.deleteAth(aid);
 		List<java.math.BigInteger> g_id = groupRepository.getAllID(aid);
@@ -64,16 +62,18 @@ public class AcademyController {
 		coachRepository.deleteJoinData(g_id);
 		coachRepository.deleteCoach(c_id);
 		groupRepository.deleteGrp(g_id);
-		academyRepository.deleteById(aid);
 		
 	}
-	
-	//Update the academy details
+
 	@PostMapping("/update")
 	public List<Academy> updateAcademy(@RequestBody Academy academy) {
+		Academy d ;
+		d=academyRepository.findByName(academy.getName());
+		academyRepository.delete(d);
 		academyRepository.save(academy);
 		List <Academy> list_of_academies = academyRepository.findAll();
-		return list_of_academies;	
+		return list_of_academies;
+		
 		
 	}
 	
