@@ -1,380 +1,45 @@
+<div class="well">
 
-<!DOCTYPE html>
-<html>
-<head>
+<h2> Academy Form</h2>
 
-<title>Sportive a Sports Category Flat Bootstrap Responsive Website Template | About :: W3layouts</title>
+<form >
+  Name:<br>
+  <input type="text" ng-model="academy.name"  class="form-control" style="width: 200px;" placeholder="NAME">
+  <br>
+  Created Date:<br>
+  <input type="text" ng-model="academy.created" class="form-control" style="width: 200px;" placeholder="MM/DD/YYYY">
+  <br>
+Updated Date:<br>
+  <input type="text" ng-model="academy.updated" class="form-control" style="width: 200px;" placeholder="MM/DD/YYY">
+  <br>
+<tr>
+				<td><button ng-click="saveAcademy()" class="btn btn-success">Save Academy</button></td>
+			</tr>
+<tr>
+				<td><button ng-click="deleteAcademy()" class="btn btn-danger">Delete Academy</button></td>
+			</tr>
+<tr>
+				<td><button ng-click="updateAcademy()" class="btn btn-warning">Update Academy</button></td>
+			</tr>
+</form> 
+<p>newAcademy = {{academy}}</p>
 
-<!-- For-Mobile-Apps -->
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Sportive a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- //For-Mobile-Apps -->
+<h2>Academy  Table</h2>
+	<div class="clearfix"></div>
+<table class="table table-strip table-hover" data-ng-init="fetchAcademy()">
 
-<!-- Custom-Stylesheet-Links -->
-	<!-- Bootstrap-Core-CSS --> <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all" />
-	<!-- Index-Page-CSS --> <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-<!-- //Custom-Stylesheet-Links -->
-
-<!-- Web-Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Carter+One' rel='stylesheet' type='text/css'>
-	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-	<link href='//fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
-<!-- //Web-Fonts -->
-
-</head>
-<body>
-
-	<!-- Header -->
-	<div class="header">
-
-		<!-- Navbar -->
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.html">SPORTIVE</a>
-				</div>
-
-				<div id="navbar" class="navbar-collapse navbar-right collapse hover-effect">
-					<ul class="nav navbar-nav">
-						<li><a href="index.html">HOME</a></li>
-						<li><a href="academy.html">Academy</a></li>
-						<li><a href="coach.html">Coach</a></li>
-						<li><a href="group.html">Group</a></li>
-						<li><a href="athlete.html">Athlete</a></li>
-						<li><a href="schedule.html">Schedule</a></li>
-					</ul>
-				</div>
-
-			</div>
-		</nav>
-		<!-- //Navbar -->
-
-		<!-- Banner -->
-		<div class="banner">
-			<img src="images/banner-1.jpg" alt="Sportive">
-				<div class="caption">
-					<h1>ABOUT</h1>
-				</div>
-		</div>
-		<!-- //Banner -->
-
-	</div>
-	<!-- //Header -->
-
-	<!-- About -->
-	<div class="about" id="grad">
-		<div class="container">
-
-			<h2>ABOUT US</h2>
-
-			<div class="col-md-6 col-sm-6 about-grid">
-				<h3>Architecto Beatae Vitae</h3>
-				<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.</p>
-			</div>
-
-			<div class="col-md-6 col-sm-6 about-grid">
-				<h3>Dolore Magnam Aliquam</h3>
-				<p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish.</p>
-			</div>
-			<div class="clearfix"></div>
-
-		</div>
-	</div>
-	<!-- //About -->
-
-	<!-- Strengths -->
-	<div class="strengths">
-		<div class="container">
-
-			<h3>OUR STRENGTHS</h3>
-
-			<div class="strength-grid">
-				<div class="col-md-4 col-sm-4 strength">
-					<div class="strengths-item">
-						<div class="strengths-icon">
-							<img src="images/feature-1.png" alt="Sportive">
-						</div>
-						<div class="strengths-info">
-							<h4>Commodonset</h4>
-							<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 strength">
-					<div class="strengths-item">
-						<div class="strengths-icon">
-							<img src="images/feature-2.png" alt="Sportive">
-						</div>
-						<div class="strengths-info">
-							<h4>Dolore Magna</h4>
-							<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 strength">
-					<div class="strengths-item">
-						<div class="strengths-icon">
-							<img src="images/feature-3.png" alt="Sportive">
-						</div>
-						<div class="strengths-info">
-							<h4>Exercitation</h4>
-							<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 strength">
-					<div class="strengths-item">
-						<div class="strengths-icon">
-							<img src="images/feature-4.png" alt="Sportive">
-						</div>
-						<div class="strengths-info">
-							<h4>Excepteur Sint</h4>
-							<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 strength">
-					<div class="strengths-item">
-						<div class="strengths-icon">
-							<img src="images/feature-5.png" alt="Sportive">
-						</div>
-						<div class="strengths-info">
-							<h4>Voluptate Velit</h4>
-							<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 strength">
-					<div class="strengths-item">
-						<div class="strengths-icon">
-							<img src="images/feature-6.png" alt="Sportive">
-						</div>
-						<div class="strengths-info">
-							<h4>Reprehenderit</h4>
-							<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-
-		</div>
-	</div>
-	<!-- //Strengths -->
-
-	<!-- Goals -->
-	<div class="goals">
-		<div class="container">
-
-			<h3>OUR GOALS</h3>
-
-			<div class="col-md-4 col-sm-4 goal">
-				<img src="images/goal-1.jpg" alt="Sportive">
-			</div>
-
-			<div class="col-md-4 col-sm-4 goal">
-				<p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish.</p>
-			</div>
-
-			<div class="col-md-4 col-sm-4 goal">
-				<img src="images/goal-2.jpg" alt="Sportive">
-			</div>
-
-		</div>
-	</div>
-	<!-- //Goals -->
-
-	<!-- Team -->
-	<div class="team" id="team">
-		<div class="container">
+  <tr>
+    <th>Name</th>
+    <th> Created Date</th>
+    <th>Updated Date</th>
+  </tr>
+	<tr ng-repeat="academy in academies">
+			<td>{{academy.name}}</td>
+			<td>{{academy.created}}</td>
+	        <td>{{academy.upStringd}}</td>
+			
+   </tr>
 		
-			<h3>TEAM</h3>
-			<div class="heading-underline"></div>
-
-			<div class="col-md-3 col-sm-3 team-grid">
-				<div class="team-image">
-					<img src="images/t1.png" alt="Sportive">
-					<div class="team-social">
-						<ul class="social-icons">
-							<li><a href="#" class="facebook" title="Go to Our Facebook Page"></a></li>
-							<li><a href="#" class="twitter" title="Go to Our Twitter Account"></a></li>
-							<li><a href="#" class="googleplus" title="Go to Our Google Plus Account"></a></li>
-						</ul>
-					</div>
-				</div>
-				<h4>Bruce Wayne</h4>
-			</div>
-
-			<div class="col-md-3 col-sm-3 team-grid">
-				<div class="team-image">
-					<img src="images/t2.png" alt="Sportive">
-					<div class="team-social">
-						<ul class="social-icons">
-							<li><a href="#" class="facebook" title="Go to Our Facebook Page"></a></li>
-							<li><a href="#" class="twitter" title="Go to Our Twitter Account"></a></li>
-							<li><a href="#" class="googleplus" title="Go to Our Google Plus Account"></a></li>
-						</ul>
-					</div>
-				</div>
-				<h4>Clark Kent</h4>
-			</div>
-
-			<div class="col-md-3 col-sm-3 team-grid">
-				<div class="team-image">
-					<img src="images/t3.png" alt="Sportive">
-					<div class="team-social">
-						<ul class="social-icons">
-							<li><a href="#" class="facebook" title="Go to Our Facebook Page"></a></li>
-							<li><a href="#" class="twitter" title="Go to Our Twitter Account"></a></li>
-							<li><a href="#" class="googleplus" title="Go to Our Google Plus Account"></a></li>
-						</ul>
-					</div>
-				</div>
-				<h4>Diana Prince</h4>
-			</div>
-
-			<div class="col-md-3 col-sm-3 team-grid">
-				<div class="team-image">
-					<img src="images/t4.png" alt="Sportive">
-					<div class="team-social">
-						<ul class="social-icons">
-							<li><a href="#" class="facebook" title="Go to Our Facebook Page"></a></li>
-							<li><a href="#" class="twitter" title="Go to Our Twitter Account"></a></li>
-							<li><a href="#" class="googleplus" title="Go to Our Google Plus Account"></a></li>
-						</ul>
-					</div>
-				</div>
-				<h4>Selina Kyle</h4>
-			</div>
-
-		</div>
-	</div>
-	<!-- Team -->
-
-	<!-- Footer -->
-	<div class="footer">
-		<div class="container">
-
-			<div class="footer-top">
-				<div class="footer-grids">
-					<div class="col-md-3 col-sm-3 address">
-						<h5>Address</h5>
-							<ul>
-								<li>Stcet</li>
-								<li>700023</li>
-								<li>Khidirpur</li>
-								<li>Kolkata</li>
-								<li>Mail : <a href="mailto:mail@example.com">mailto@stcet.com</a></li>
-							</ul>
-					</div>
-					<div class="col-md-3 col-sm-3 contact">
-						<h5>Contact</h5>
-						<div class="phone">
-							<p>033  456 7890</p>
-							<p>033  789 3450</p>
-						</div>
-
-						<div class="mail">
-							<form>
-								<input type="text" placeholder="Email address" required="">
-								<input type="submit" value="Subscribe">
-							</form>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="col-md-6 col-sm-6 connect">
-						<h5>Connect</h5>
-						<div class="connect-social">
-							<ul>
-								<li><a href="#" class="facebook" title="Go to Our Facebook Page"></a></li>
-								<li><a href="#" class="twitter" title="Go to Our Twitter Account"></a></li>
-								<li><a href="#" class="googleplus" title="Go to Our Google Plus Account"></a></li>
-								<li><a href="#" class="linkedin" title="Go to Our Linkedin Page"></a></li>
-								<li><a href="#" class="blogger" title="Go to Our Blogger Account"></a></li>
-								<li><a href="#" class="tumblr" title="Go to Our Tumblr Page"></a></li>
-								<li><a href="#" class="rss" title="Go to Our RSS Feed"></a></li>
-								<li><a href="#" class="youtube" title="Go to Our Youtube Channel"></a></li>
-								<li><a href="#" class="vimeo" title="Go to Our Vimeo Channel"></a></li>
-								<li><a href="#" class="deviantart" title="Go to Our Deviantart Page"></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="footer-bottom">
-					<div class="footer-nav">
-						<ul>
-							<li><a href="index.html">HOME</a></li>
-						<li><a href="academy.html">Academy</a></li>
-						<li><a href="coach.html">Coach</a></li>
-						<li><a href="group.html">Groups</a></li>
-						<li><a href="athlete.html">Athlete</a></li>
-						<li><a href="schedule.html">Schedule</a></li>
-						</ul>
-					</div>
-					<div class="copyright">
-						<p>&copy; 2018 SportsPLus. All Rights Reserved | Design by CSE </p>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-	<!-- //Footer -->
-
-<!-- Custom-JavaScript-File-Links -->
-
-	<!-- Supportive-JavaScript --> <script type="text/javascript" src="js/jquery.min.js"></script>
-	<!-- Necessary-JS-File-For-Bootstrap --> <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-	<!-- Slide-To-Top JavaScript (No-Need-To-Change) -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 100,
-				easingType: 'linear'
-			};
-			$().UItoTop({ easingType: 'easeOutQuart' });
-		});
-	</script>
-	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 0;"> </span></a>
-	<!-- //Slide-To-Top JavaScript -->
-
-	<!-- Smooth-Scrolling-JavaScript -->
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>
-	<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll, .navbar li a, .footer li a").click(function(event){
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
-			});
-	</script>
-	<!-- //Smooth-Scrolling-JavaScript -->
-
-<!-- //Custom-JavaScript-File-Links -->
-
-</body>
-</html>
-
-
-
-<!-- All Images are for reference and illustration puropse only. -->
-<!-- Unsplash-Link
-	Images were taken from the website UNSPLASH - https://unsplash.com/
--->
-<!-- Flaticon-Link:
-	Icons were taken from the website FLATICON "http://www.flaticon.com" made by "http://www.freepik.com" is licensed by "http://creativecommons.org/licenses/by/3.0/" CC 3.0. BY
--->
+  </table>
+  
+</div>
