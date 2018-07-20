@@ -17,7 +17,7 @@ public interface AthleteRepository extends JpaRepository<Athlete, Long> {
 	Athlete findByFirstName(String s);
 	
 	@Modifying
-	@Query(value="delete from athlete_tbl where Academy_id = ?" , nativeQuery=true)
+	@Query(value="delete from athlete_tbl where Trainig_Base = ?" , nativeQuery=true)
 	@Transactional
-	public void deleteCoach(Long aid);
+	public void deleteAth(Long aid);
 }

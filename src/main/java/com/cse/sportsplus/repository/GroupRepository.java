@@ -22,9 +22,9 @@ public interface GroupRepository extends JpaRepository<Group,Long>
 
 	
 	@Modifying
-	@Query(value="delete from group_tbl where groupID in ?" , nativeQuery=true)
+	@Query(value="delete from group_tbl where group_id in (?1)" , nativeQuery=true)
 	@Transactional
-	public void deleteCoach(Set<Long> g_id);
+	public void deleteGrp(List<java.math.BigInteger> g_id);
 	
 	
 	@Query(value= "select group_id from group_tbl where academy_id = ?", nativeQuery=true)
