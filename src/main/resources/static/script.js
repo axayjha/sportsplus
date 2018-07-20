@@ -413,8 +413,10 @@ app.controller("athleteCtrl", function($scope, $http){
 			return;
 		}
 		var v = new Date(c.yy,c.mm-1,c.dd,0,0,0,0);
+
 		if(v < date){
 			$scope.dateMessage = "Date of Birth should be less than current date";
+
 			//console.log("error");
 			alert("Date of Birth should be less than current date");
 			return false;
