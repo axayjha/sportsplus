@@ -20,7 +20,8 @@ public class Coach implements Serializable {
 
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy="coach")
     private Set<Group> groups;
-
+    
+    // Coach name
     @Column(name = "name")
     private String name;
 
