@@ -37,16 +37,19 @@ public class AcademyController {
 	@Autowired
 	private AthleteRepository athleteRepository;
 	
-	
+	//Add new academy
 	@PostMapping("/add")
 	public Academy addAcademy(@RequestBody Academy academy) {
 		return academyRepository.save(academy);
 	}
 	
+	//Display academy details
 	@GetMapping("/getAll")
 	public List<Academy> getAll() {
 		return academyRepository.findAll();
 	}
+	
+	//Delete specific academy and its related coach, group data
 	@PostMapping("/delete")
 	public void deleteAcademy(@RequestBody Academy academy) {
 		Long aid = academy.getId();
@@ -64,7 +67,8 @@ public class AcademyController {
 		academyRepository.deleteById(aid);
 		
 	}
-
+	
+	//Update the academy details
 	@PostMapping("/update")
 	public List<Academy> updateAcademy(@RequestBody Academy academy) {
 		academyRepository.save(academy);
