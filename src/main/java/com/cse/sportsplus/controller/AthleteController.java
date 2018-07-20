@@ -57,7 +57,7 @@ public class AthleteController {
      }
 	 
 	 @GetMapping("/coachByGroupID")
-	 public List<java.math.BigInteger> getCoachID(Long group_id){
+	 public List<java.math.BigInteger> getCoachID(@RequestParam Long group_id){
 		 return coachRepo.getAllCoachIDByGroupID(group_id);
 	 }
 	 @GetMapping("/athleteByID")
