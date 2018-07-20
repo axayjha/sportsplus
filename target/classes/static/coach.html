@@ -1,0 +1,79 @@
+<div class="container" ng-init="showData=false;">
+    <h3>Coach Controls</h3>
+    <div class="well conatiner">
+        <h4>Add Coach</h4>
+        <table class="table" style="width: 500px;">
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="newCoach.name" placeholder="NAME">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Phone:
+                </td>
+                <td>
+                    <input type="number" class="form-control" ng-model="newCoach.phone" placeholder="PHONE NO">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Qualification:
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="newCoach.qualification" placeholder="QUALIFICATION">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <button class="btn btn-success" ng-click="addCoach(newCoach)"><span class="glyphicon glyphicon-plus"></span>
+                    Add Coach</button>
+                </td>
+            </tr>
+        </table> 
+    </div>
+    <div class="well conatiner">
+        <h3>View, Update and Delete</h3>
+        <button class="btn btn-primary" ng-click="getAll();showData=!showData">
+                <span class="glyphicon glyphicon-list"></span> Show All
+        </button>
+        <table class="table" ng-show="showData" ng-init="fetchAllCoaches()">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Qualification</th>
+            </tr>
+            <tr ng-repeat="ch in allCoach">
+                <td>
+                    <input type="number" ng-model="ch.coach_id" disabled class="form-control" style="width: 70px;">
+                </td>
+                <td>
+                    <input type="text" ng-model="ch.name" ng-disabled="!updateAllow" class="form-control">
+                </td>
+                <td>
+                    <input type="text" ng-model="ch.phone" ng-disabled="!updateAllow" class="form-control">
+                </td>
+                <td>
+                    <input type="text" ng-model="ch.qualification" ng-disabled="!updateAllow" class="form-control">
+                </td>
+                <td>
+                        <button class="btn btn-primary" ng-click="updateAllow=!updateAllow">
+                                <span class="glyphicon glyphicon-edit"></span> Edit
+                        </button>
+                        <p></p>
+                        <button class="btn btn-success" ng-show="updateAllow" ng-click="ch=updateCoach(ch)">
+                            <span class="glyphicon glyphicon-pencil"></span> Update
+                        </button>
+                        <p></p>
+                        <button class="btn btn-danger" ng-click="deleteCoach(ch);">
+                            <span class="glyphicon glyphicon-remove"></span> Delete
+                        </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
