@@ -1,0 +1,76 @@
+
+		<form>
+  <div class="form-group">
+    
+    <input type="text" class="form-control" placeholder="First Name" />
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Last Name" />
+  </div>
+  <div class="form-group">
+  <input type="text" class="form-control" placeholder="MM/DD/YYYY" />
+  </div>
+	<div class="form-group">
+	<label for="#gender">Gender</label>
+	<select class="form-control" id="gender">
+			<option ng-repeat="s in ['male', 'female']">{{s}}</option>
+		</select>
+	</div>
+		
+	  <div class="form-group">
+		<input type="number" class="form-control" placeholder="Phone Number"/>
+	  </div>
+	  <div class="form-group">
+		<input type="text" class="form-control" placeholder="Address" />
+	  </div>
+	  <div class="form-group">
+		<input type="text" class="form-control" placeholder="City" />
+	  </div>
+	  <div class="form-group">
+		<input type="number" class="form-control" placeholder="Pin Code"/>
+	  </div>
+	  <div class="form-group">
+		<input type="text" class="form-control" placeholder="Parent Name" />
+	  </div>
+	  <div class="form-group">
+		<input type="text" class="form-control" placeholder="Parent Address" />
+	  </div>
+	  <div class="form-group">
+		<input type="number" class="form-control" placeholder="parent Number" />
+	  </div>
+	  <div class="form-group">
+		<input type="text" class="form-control" placeholder="Primary Sports" />
+	  </div>
+	  <div class="form-group">
+		<select class="form-control" ng-init="fetchAid()">
+			<option ng-repeat="s in aid">{{s}}</option>
+		</select>
+	  </div>
+	  <div class="form-group">
+		<input type="text" class="form-control" placeholder="College" />
+	  </div>
+	  <div class="form-group">
+		<select class="form-control" >
+			<option ng-repeat="s in ['Regular','Elite']">{{s}}</option>
+		</select>
+	  </div>
+	  <div class="form-group">
+		<select class="form-control" >
+			<option ng-repeat="s in ['Residential','Non-residential']">{{s}}</option>
+		</select>
+	  </div>
+	  <div class="form-group">
+	  <select ng-model="group.groupStatus" class="form-control">
+		  <option ng-repeat="s in ['Training (Pre-Season)', 'Training (Season)', 'Competition', 'Post-Competition', 'Injured', 'Rehabilitation']">{{s}}</option>
+	  </select>
+	  </div>
+	  <div class="form-group">
+	  <select ng-model="group.groupStatus" class="form-control">
+		  <option ng-repeat="s in ['O+','A+','B+','AB+','O-','A-','B-','AB-']">{{s}}</option>
+	  </select>
+	  </div>
+	  <div class="form-group">
+	  <button type="submit" class="btn btn-default" ng-click="addAthlete()">Submit</button>
+	  </div>
+  
+</form>
