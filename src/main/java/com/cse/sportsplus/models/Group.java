@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Group implements Serializable{
 	
 	@Id //Denotes primary key
-	@GeneratedValue
+	@GeneratedValue //Denotes primary key is auto-generated
 	@Column(name="group_id")
 	private Long groupID;
 
