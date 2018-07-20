@@ -33,6 +33,7 @@ public class Coach implements Serializable {
     @Column(name = "phone")
     private String phone;
 
+    // default constructor
     public Coach() {
         super();
     }
