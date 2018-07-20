@@ -1,9 +1,12 @@
 package com.cse.sportsplus.repository;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cse.sportsplus.models.Athlete;
 
@@ -12,4 +15,9 @@ public interface AthleteRepository extends JpaRepository<Athlete, Long> {
 	Athlete findAth(Long id);
 	
 	Athlete findByFirstName(String s);
+	
+	@Modifying
+	@Query(value="delete from athlete_tbl where Academy_id = ?" , nativeQuery=true)
+	@Transactional
+	public void deleteCoach(Long aid);
 }

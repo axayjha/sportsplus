@@ -175,7 +175,8 @@ app.controller("groupCtrl", function($scope, $http) {
 	// addGroup -> addGroup
 	$scope.addGroup = function (academy,coach) {
 		$scope.group.coach = [coach];
-		$scope.academy = academy;
+		$scope.group.academy = academy;
+
 		$http({
 			method : 'POST',
 			url : 'http://localhost:8080/group/addGroup',
@@ -377,9 +378,47 @@ app.controller("coachCtrl", function($scope, $http){
 });
 
 app.controller("athleteCtrl", function($scope, $http){
+
+
 	$scope.addAthlete = function(ath, c){
-		console.log(ath);
+		var mnth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+		if(c.yy%400==0||c.yy%100!=0&&c.yy%4==0){
+			if(c.mm == 2 && c.dd > 29){
+				alert("Date of Birth Invalid");
+				return;
+			}else{
+				if(mnth[c.mm-1] < c.dd && c.mm != 2){
+					alert("Date of Birth Invalid");
+					return;
+				}
+			}
+		}else{
+			if(c.mm == 2 && c.dd > 28){
+				alert("Date of Birth Invalid");
+				return;
+			}else{
+				if(mnth[c.mm-1] < c.dd && c.mm != 2){
+					alert("Date of Birth Invalid");
+					return;
+				}
+			}
+		}
+		
+		if(ath == null || ath == undefined){
+			alert("Fields cannot be left empty");
+			return;
+		}
+		if(Object.keys(ath).length < 19){
+			alert("Fields cannot be left blank");
+			return;
+		}
 		var v = new Date(c.yy,c.mm-1,c.dd,0,0,0,0);
+		if(v < date){
+			$scope.dateMessage = "Date of Birth should be greater than current date";
+			//console.log("error");
+			alert("Date of Birth should be greater than current date");
+			return false;
+		}
 		ath.dob = v.getTime();
 		var ageDifMs = Date.now() - v.getTime();
     	var ageDate = new Date(ageDifMs); // miliseconds from epoch
@@ -392,7 +431,6 @@ app.controller("athleteCtrl", function($scope, $http){
 		}).success(function(data, status) {
 			alert("Success");
 			console.log(data);
-			$scope.fetchAth(data.id);
 		}).error(function(data, status) {
 			$scope.status = status;
 			$scope.deleteMessage = "Request failed";
@@ -447,12 +485,12 @@ app.controller("athleteCtrl", function($scope, $http){
 			url : 'http://localhost:8080/Athlete/athleteByID?id=' + athid, 
 			headers: { 'Content-Type': 'application/json' },
 		}).success(function(data, status) {
-			$scope.ath = data;
 			var v = new Date(data.dob);
 			$scope.dd = v.getDate();
 			$scope.mm = v.getMonth()+1;
 			$scope.yy = v.getFullYear();
 			//console.log($scope.academyID);
+			$scope.ath = data;
 		}).error(function(data, status) {
 			$scope.status = status;
 			$scope.deleteMessage = "Request failed";
@@ -477,6 +515,7 @@ app.controller("athleteCtrl", function($scope, $http){
 		});
 	};
 	$scope.updtAth = function(ath, d, m, y){
+		
 		var c = function(d,m,y){
 			this.dd = d;
 			this.mm = m;
