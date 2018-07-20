@@ -45,7 +45,7 @@ public class Coach implements Serializable {
         this.coach_id = coach_id;
     }
 
-    @JsonIgnore
+    //@JsonIgnore
     public Set<Group> getGroups() { return groups; }
 
     public Coach(String name, String qualification, String phone) {

@@ -25,6 +25,10 @@ app.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'coach.html',
 		controller : 'coachCtrl'
 	});
+	$routeProvider.when('/athlete',{
+		templateUrl  : 'athlete.html',
+		controller : 'athleteCtrl'
+	});
 	$routeProvider.otherwise({
 		redirectTo : '/home'
 	});
@@ -105,9 +109,6 @@ app.controller("academyCtrl", function($scope, $http) {
 	};
 
 });
-
-<<<<<<< HEAD
-=======
 /* // DONT TOUCH
 app.controller("scheduleCtrl", function($scope, $http) {
 	//Creating validations and functions
@@ -308,6 +309,21 @@ app.controller("coachCtrl", function($scope, $http){
 		});
 	};
 });
+
+
+//athlete controller
+app.controller("athleteCtrl",function ($scope,$http) {
+	
+})
+
+
+
+
+
+
+
+
+
 
 // schedule controller { DONT TOUCH }
 app.controller("scheduleCtrl", function($scope, $http) {

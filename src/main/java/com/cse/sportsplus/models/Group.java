@@ -17,7 +17,7 @@ public class Group implements Serializable{
 	@Column(name="group_id")
 	private Long groupID;
 
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="academy_id")
 	private Academy academy;

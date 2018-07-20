@@ -21,7 +21,7 @@ public class Academy implements Serializable {
 	 	@Column(name="upStringd")
 		private Long upStringd;
 
-	 	@OneToMany(mappedBy = "academy")
+	 	@OneToMany(mappedBy = "academy",cascade = CascadeType.REMOVE)
 	 	private List<Group> groupList;
 
 
