@@ -14,8 +14,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tbl_coach")
 public class Coach implements Serializable {
 
-    @Id
-    @GeneratedValue
+    @Id     
+    @GeneratedValue //Denotes primary key is auto-generated
     private Long coach_id;
 
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy="coach")
