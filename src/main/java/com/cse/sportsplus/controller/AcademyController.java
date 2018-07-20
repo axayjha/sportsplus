@@ -49,6 +49,7 @@ public class AcademyController {
 	}
 	@PostMapping("/delete")
 	public void deleteAcademy(@RequestBody Academy academy) {
+
 		Long aid = academy.getId();
 		athleteRepository.deleteAth(aid);
 		List<java.math.BigInteger> g_id = groupRepository.getAllID(aid);
