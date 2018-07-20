@@ -1,19 +1,16 @@
 package com.cse.sportsplus.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
-import org.hibernate.annotations.Formula;
-
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -34,11 +31,9 @@ public class Athlete implements Serializable{
 	
 	@NotNull
 	@Column(name="DOB")
-    private String  dob;
-
-    // check for age from dob
-	@Formula("(TIMESTAMPDIFF('YEAR',DOB,CURDATE()))")
-
+    private Long  dob;
+	
+	@Column(name="Age")
     private Long age;
 	
 	@NotNull
@@ -74,8 +69,9 @@ public class Athlete implements Serializable{
 	@Column(name="PrimarySport")
     private String primarySport;
 	
+
 	@Column(name="TrainigBase")
-    private String trainingBase;
+    private Long trainingBase;
 	
 	@Column(name="College")
     private String college;
@@ -83,6 +79,9 @@ public class Athlete implements Serializable{
     
 	@Column(name="CoachID")
 	private Long coachId;
+	
+	@Column(name="GroupID")
+	private Long groupid;
 	
 	@Column(name="PlayerLevel")
     private String level;
@@ -96,13 +95,11 @@ public class Athlete implements Serializable{
 	@Column(name="BloodGroup")
     private String bloodGroup;
 
-    
-
-    public Athlete(Long id, @NotNull String firstName, @NotNull String lastName, @NotNull String dob, Long age,
-			@NotNull @NotNull String gender, @NotNull Long contactNo, String address, @NotNull String city, @NotNull Long pincode,
-			String parentFullName, String parentAddress, @NotNull Long parentContact, @NotNull String primarySport,
-			String trainingBase, String college, Long coachId, String level, String residentStatus,
-			String athleteStatus, String bloodGroup) {
+	public Athlete(Long id, @NotNull String firstName, @NotNull String lastName, @NotNull @NotNull Long dob, Long age,
+			@NotNull String gender, @NotNull Long contactNo, String address, @NotNull String city,
+			@NotNull Long pincode, String parentFullName, String parentAddress, @NotNull Long parentContact,
+			@NotNull String primarySport, Long trainingBase, String college, Long coachId, Long groupid, String level,
+			String residentStatus, String athleteStatus, String bloodGroup) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -121,167 +118,78 @@ public class Athlete implements Serializable{
 		this.trainingBase = trainingBase;
 		this.college = college;
 		this.coachId = coachId;
+		this.groupid = groupid;
 		this.level = level;
 		this.residentStatus = residentStatus;
 		this.athleteStatus = athleteStatus;
 		this.bloodGroup = bloodGroup;
 	}
 
-	public Athlete() {
+	public Long getId() {
+		return id;
+	}
 
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public @NotNull Long getDob() {
+		return dob;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public void setDob(@NotNull Long dob) {
+		this.dob = dob;
+	}
 
-    public String getDob() {
-        return dob;
-    }
+	public Long getAge() {
+		return age;
+	}
 
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
+	public void setAge(Long age) {
+		this.age = age;
+	}
 
-    @Transient
-    public Long getAge() {
-        return age;
-    }
+	public String getGender() {
+		return gender;
+	}
 
-    public void setAge(Long age) {
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
+	public Long getContactNo() {
+		return contactNo;
+	}
 
-        this.age = age;
-    }
+	public void setContactNo(Long contactNo) {
+		this.contactNo = contactNo;
+	}
 
-    public String getGender() {
-        return gender;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setGender( String gender) {
-        this.gender = gender;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public Long getContactNo() {
-        return contactNo;
-    }
-
-    public void setContactNo(Long contactNo) {
-        this.contactNo = contactNo;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getParentFullName() {
-        return parentFullName;
-    }
-
-    public void setParentFullName(String parentFullName) {
-        this.parentFullName = parentFullName;
-    }
-
-    public String getParentAddress() {
-        return parentAddress;
-    }
-
-    public void setParentAddress(String parentAddress) {
-        this.parentAddress = parentAddress;
-    }
-
-    public Long getParentContact() {
-        return parentContact;
-    }
-
-    public void setParentContact(Long parentContact) {
-        this.parentContact = parentContact;
-    }
-
-    public String getTrainingBase() {
-        return trainingBase;
-    }
-
-    public void setTrainingBase(String trainingBase) {
-        this.trainingBase = trainingBase;
-    }
-
-    public String getCollege() {
-        return college;
-    }
-
-    public void setCollege(String college) {
-        this.college = college;
-    }
-
-
-    public Long getCoachId() {
-        return coachId;
-    }
-
-    public void setCoachId(Long coachId) {
-        this.coachId = coachId;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getResidentStatus() {
-        return residentStatus;
-    }
-
-    public void setResidentStatus(String residentStatus) {
-        this.residentStatus = residentStatus;
-    }
-
-
-    public String getAthleteStatus() {
-        return athleteStatus;
-    }
-
-    public void setAthleteStatus(String athleteStatus) {
-
-        this.athleteStatus = athleteStatus;
-    }
-
-    public String getBloodGroup() {
-        return bloodGroup;
-    }
-
-    public void setBloodGroup(String bloodGroup) {
-        this.bloodGroup = bloodGroup;
-    }
-
-    public String getCity() {
+	public String getCity() {
 		return city;
 	}
 
@@ -297,13 +205,105 @@ public class Athlete implements Serializable{
 		this.pincode = pincode;
 	}
 
-    public String getPrimarySport() {
-        return primarySport;
-    }
+	public String getParentFullName() {
+		return parentFullName;
+	}
 
-    public void setPrimarySport(String primarySport) {
-        this.primarySport = primarySport;
-    }
+	public void setParentFullName(String parentFullName) {
+		this.parentFullName = parentFullName;
+	}
 
+	public String getParentAddress() {
+		return parentAddress;
+	}
 
+	public void setParentAddress(String parentAddress) {
+		this.parentAddress = parentAddress;
+	}
+
+	public Long getParentContact() {
+		return parentContact;
+	}
+
+	public void setParentContact(Long parentContact) {
+		this.parentContact = parentContact;
+	}
+
+	public String getPrimarySport() {
+		return primarySport;
+	}
+
+	public void setPrimarySport(String primarySport) {
+		this.primarySport = primarySport;
+	}
+
+	public Long getTrainingBase() {
+		return trainingBase;
+	}
+
+	public void setTrainingBase(Long trainingBase) {
+		this.trainingBase = trainingBase;
+	}
+
+	public String getCollege() {
+		return college;
+	}
+
+	public void setCollege(String college) {
+		this.college = college;
+	}
+
+	public Long getCoachId() {
+		return coachId;
+	}
+
+	public void setCoachId(Long coachId) {
+		this.coachId = coachId;
+	}
+
+	public Long getGroupid() {
+		return groupid;
+	}
+
+	public void setGroupid(Long groupid) {
+		this.groupid = groupid;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	public String getResidentStatus() {
+		return residentStatus;
+	}
+
+	public void setResidentStatus(String residentStatus) {
+		this.residentStatus = residentStatus;
+	}
+
+	public String getAthleteStatus() {
+		return athleteStatus;
+	}
+
+	public void setAthleteStatus(String athleteStatus) {
+		this.athleteStatus = athleteStatus;
+	}
+
+	public String getBloodGroup() {
+		return bloodGroup;
+	}
+
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
+	}
+
+	public Athlete() {
+		super();
+	}
+
+    
 }

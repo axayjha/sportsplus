@@ -2,6 +2,7 @@ package com.cse.sportsplus.controller;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cse.sportsplus.models.Coach;
 import com.cse.sportsplus.models.Group;
 import com.cse.sportsplus.repository.CoachRepository;
 import com.cse.sportsplus.repository.GroupRepository;
@@ -64,6 +66,16 @@ public class GroupController {
 		groupRepository.save(updatedGroup);
 		List<Group> allGroups = groupRepository.findAll();
 		return allGroups;
+	}
+	@PostMapping("/addCoach")
+	public Group addCoach(@RequestBody Group group) {
+		Group tg = groupRepository.findByGroupID(group.getGroupID());
+		Set<Coach> tc = tg.getCoach();
+		tc.addAll(group.getCoach());
+		tg.setCoach(tc);
+		groupRepository.save(tg);
+		return groupRepository.findByGroupID(group.getGroupID());
+		
 	}
 
 	

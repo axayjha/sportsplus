@@ -16,12 +16,7 @@ public class Coach implements Serializable {
     @GeneratedValue
     private Long coach_id;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "Coach_Group",
-            joinColumns = {@JoinColumn(name = "coach_id")},
-            inverseJoinColumns = {@JoinColumn(name = "group_id")}
-    )
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy="coach")
     private Set<Group> groups;
 
     @Column(name = "name")
