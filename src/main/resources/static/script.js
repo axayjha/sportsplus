@@ -63,12 +63,29 @@ app.controller("academyCtrl", function($scope, $http) {
 			$scope.data = "Request failed";
 		});
 	};
-	
+	$scope.fd = function(crd){
+		var v1 = new Date(crd);
+		return v1.toLocaleDateString();
+	}
 	// saveAcademy -> add
 	$scope.saveAcademy = function() {
+		if(Object.keys($scope.academy).length < 3 || $scope.academy == null){
+			alert("Fields cant be left empty");
+			return;
+		}
+		var v = new Date().getTime();
 		$scope.academy.created = new Date($scope.academy.created).getTime();
+		if(v < $scope.academy.created){
+			alert("Created Date cant Exceed the current Date");
+			return;
+		}
 		console.log($scope.academy.created);
 		$scope.academy.upStringd = new Date($scope.academy.updated).getTime();
+		if(v < $scope.academy.created){
+			alert("Updated Date cant Exceed the current Date");
+			return;
+		}
+
 		console.log($scope.academy.upStringd);
 		$http({
 			method : 'POST',
@@ -86,12 +103,14 @@ app.controller("academyCtrl", function($scope, $http) {
 	};
 	
 	// deleteAcademy -> delete
-	$scope.deleteAcademy = function() {
+	$scope.deleteAcademy = function(academy) {
+		console.log(academy);
+		return;
 		$http({
 			method : 'POST',
 			url : 'http://localhost:8080/academy/delete',
 			headers: { 'Content-Type': 'application/json' },
-			data:$scope.academy
+			data:academy
 		}).success(function(data, status) {
 			console.log(data);
 			$scope.fetchAcademy();
@@ -103,12 +122,30 @@ app.controller("academyCtrl", function($scope, $http) {
 	};
 	
 	// updateAcademy -> update
-	$scope.updateAcademy = function() {
+	$scope.updateAcademy = function(academy, cr, up) {
+		if(Object.keys(academy).length < 3 || academy == null){
+			alert("Fields cant be left empty");
+			return;
+		}
+		var v = new Date().getTime();
+		academy.created = new Date(cr).getTime();
+		if(v < academy.created){
+			alert("Created Date cant Exceed the current Date");
+			return;
+		}
+		
+		academy.upStringd = new Date(up).getTime();
+		if(v < academy.upStringd){
+			alert("Updated Date cant Exceed the current Date");
+			return;
+		}
+		academy.created = new Date(cr).getTime();
+		academy.upStringd = new Date(up).getTime();
 		$http({
 			method : 'POST',
 			url : 'http://localhost:8080/academy/update',
 			headers: { 'Content-Type': 'application/json' },
-			data:$scope.academy
+			data:academy
 		}).success(function(data, status) {
 			console.log(data);
 			$scope.fetchAcademy();
