@@ -25,9 +25,11 @@ public class Coach implements Serializable {
     @Column(name = "name")
     private String name;
 
+    // Coach qualification
     @Column(name = "qualification")
     private String qualification;
 
+    // Coach's phone number
     @Column(name = "phone")
     private String phone;
 
