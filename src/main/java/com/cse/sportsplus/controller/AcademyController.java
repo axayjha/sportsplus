@@ -61,18 +61,15 @@ public class AcademyController {
 		coachRepository.deleteJoinData(g_id);
 		coachRepository.deleteCoach(c_id);
 		groupRepository.deleteGrp(g_id);
+		academyRepository.deleteById(aid);
 		
 	}
 
 	@PostMapping("/update")
 	public List<Academy> updateAcademy(@RequestBody Academy academy) {
-		Academy d ;
-		d=academyRepository.findByName(academy.getName());
-		academyRepository.delete(d);
 		academyRepository.save(academy);
 		List <Academy> list_of_academies = academyRepository.findAll();
-		return list_of_academies;
-		
+		return list_of_academies;	
 		
 	}
 	
