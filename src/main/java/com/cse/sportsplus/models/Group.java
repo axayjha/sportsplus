@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "group_tbl")
 public class Group implements Serializable{
 	
-	@Id
+	@Id //Denotes primary key
 	@GeneratedValue
 	@Column(name="group_id")
 	private Long groupID;
